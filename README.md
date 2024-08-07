@@ -1,9 +1,4 @@
 # ASIC-Design
-# Table of contents
-1. [Compiling a simple C program using GCC compiler]
-2. 
-
-
 ---
 # Lab 1A:Create a simple C program to find the sum of the numbers from 1 to n.
 ### Step 1:
@@ -86,12 +81,10 @@ Use the following command to jump to the beginning of the main section:<br>
 4. The next instructions are:<br>
    ``lui a0 0x21`` which updates the a0 register value<br>
    ``addi sp sp -16`` This updates the content of the stack pointer 'sp' by -16 (or -10 in hexadecimal).<br>
-   
-   
+   ![Screenshot 2024-08-07 185218](https://github.com/user-attachments/assets/dd1798a5-9fdc-44e0-8bfc-d82f64d3793c)<br>
+   In the above image we can see that intially sp value is 0x0000003ffffffb50.<br
+   After the addi instruction sp value is 0x0000003ffffffb40.<br>
+  We can recheck using the calculator. <br>
+![Screenshot 2024-08-07 185623](https://github.com/user-attachments/assets/d5b753c4-3ee7-4f0c-9eaf-66802fb67ec1)<br>
 
-  
-
-
-   
-   
-
+---
