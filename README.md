@@ -14,7 +14,7 @@ Save the file in Leafpad and return to the terminal.
 #include<stdio.h>
 int main(){
   int sum=0;
-  int n=45;
+  int n=100;
   for(int i=1;i<=n;i++){
     sum=sum+i;
   }
@@ -22,16 +22,18 @@ int main(){
   return 0;
 }
 ```
-![Screenshot 2024-08-07 145638](https://github.com/user-attachments/assets/5e0c85f4-44c9-4eb9-bea1-f2b9e295adaf)
+![Screenshot 2024-08-07 215530](https://github.com/user-attachments/assets/b390cc4f-aa0e-4121-9597-f53345261c88)
+
 ### Step 3:
 For the compilation of the code, use the following command:<br>
 ``GCC sum1ton.c``<br>
 Make sure there are no errors.<br>
 After compilation, an executable file is generated. Run this executable in the terminal to get the final output using the following command:<br>
 ``./a.out``<br>
-![Screenshot 2024-08-07 150721](https://github.com/user-attachments/assets/ddb79470-3ce4-4d82-bb0a-77f1fc27522e)
+![Screenshot 2024-08-07 215759](https://github.com/user-attachments/assets/66bd1819-3ec7-4192-99f0-54b03fa1e782)
+
 The final output will be:<br>
-`` Sum of the numbers form 1 to 45 is 1035.``
+`` Sum of the numbers form 1 to 100 is 5050.``
 Check the output using a calculator to verify the result.
 
 # Lab 1B:Compile the same C program using the RISC-V GCC compiler.
