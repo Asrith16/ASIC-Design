@@ -90,3 +90,64 @@ Use the following command to jump to the beginning of the main section:<br>
 ![Screenshot 2024-08-07 185623](https://github.com/user-attachments/assets/d5b753c4-3ee7-4f0c-9eaf-66802fb67ec1)<br>
 
 ---
+
+
+# Lab 3: Overview of RISC-V Instruction Formats.
+The RISC-V architecture employs six distinct instruction formats—R-Type, I-Type, S-Type, B-Type, U-Type, and J-Type—each designed for particular operations such as arithmetic and logic processing, immediate value handling, branching, memory access, and jumps. These formats are crucial in specifying the 32-bit instruction codes that drive the RISC-V system.These formats differ in their structure and the kind of operations they facilitate. Below is a detailed breakdown of each format:<br>
+
+### 1) R-Type (Register Type)
+**Purpose:** The R-Type format is used for operations like arithmetic and logic that only involve register values. These operations don’t need immediate values or memory access, making them direct and efficient.
+
+**Structure:**
+- **Opcode (7 bits):** Instructs the processor on what operation to carry out, such as arithmetic or logic tasks.
+- **funct3 (3 bits):** Works with `funct7` to specify the exact operation (e.g., add, subtract, AND, OR).
+- **rs1 (5 bits):** The first source register that holds the first operand.
+- **rs2 (5 bits):** The second source register that holds the second operand.
+- **rd (5 bits):** The destination register where the result is stored.
+- **funct7 (7 bits):** Used together with `funct3` to define the operation more accurately, especially to differentiate between similar tasks.
+
+### 2) I-Type (Immediate Type)
+**Purpose:** The I-Type format is used for operations that involve an immediate value (a constant within the instruction), loading from memory, and certain arithmetic tasks.
+
+**Structure:**
+- **Opcode (7 bits):** Defines the type of operation, such as arithmetic with an immediate value or loading from memory.
+- **funct3 (3 bits):** Further specifies the operation, like adding with an immediate value or loading a byte from memory.
+- **rs1 (5 bits):** The source register that provides the operand for arithmetic tasks.
+- **rd (5 bits):** The destination register where the result is stored.
+- **Immediate (12 bits):** The signed immediate value used in the operation, often for offset calculation or as an operand.
+
+### 3) S-Type (Store Type)
+**Purpose:** The S-Type format is used for store operations, where data is written from a register to a memory location. This is crucial for storing data in RAM or other memory areas.
+
+**Structure:**
+- **Opcode (7 bits):** Specifies the type of store operation, such as storing a word (32-bit) or a byte.
+- **funct3 (3 bits):** Further defines the store operation, indicating whether it’s a byte, half-word, or word store.
+- **rs1 (5 bits):** The base register that holds the address where the data will be stored.
+- **rs2 (5 bits):** The source register that contains the data to be stored.
+- **Immediate (12 bits):** The immediate value, split into two parts, that provides the offset to the base address for the store operation.
+
+### 4) B-Type (Branch Type)
+**Purpose:** The B-Type format handles conditional branch operations, allowing the program to jump to a different part of the code based on a comparison between two registers. This is key for control flow structures like loops and conditional statements.
+
+**Structure:**
+- **Opcode (7 bits):** Specifies the branch operation.
+- **funct3 (3 bits):** Indicates the type of comparison (e.g., equal, not equal, less than).
+- **rs1 (5 bits):** The first source register involved in the comparison.
+- **rs2 (5 bits):** The second source register involved in the comparison.
+- **Immediate (12 bits):** A signed offset used to calculate the branch target address. The immediate is split across the instruction fields and combined to compute the jump destination.
+
+### 5) U-Type (Upper Immediate Type)
+**Purpose:** The U-Type format is used for operations that require a large immediate value to be loaded into a register, often for constructing addresses or large constants. It allows loading a 20-bit immediate value into the upper 20 bits of a register.
+
+**Structure:**
+- **Opcode (7 bits):** Specifies the operation, such as loading an upper immediate value.
+- **rd (5 bits):** The destination register where the upper immediate value will be stored.
+- **Immediate (20 bits):** The upper immediate value that will be loaded into the register. The lower 12 bits of the register are typically zeroed out or combined with other operations.
+
+### 6) J-Type (Jump Type)
+**Purpose:** The J-Type format is used for jump operations, enabling the program to jump to a specific address unconditionally. This is essential for function calls, jump tables, and other control flow changes that require an absolute change in program flow.
+
+**Structure:**
+- **Opcode (7 bits):** Specifies the jump operation.
+- **rd (5 bits):** The destination register where the return address will be stored, allowing the program to return to the point after the jump.
+- **Immediate (20 bits):** A signed offset used to calculate the target address for the jump. The immediate is spread across multiple fields in the instruction and combined to form the jump target.
