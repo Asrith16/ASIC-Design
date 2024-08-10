@@ -63,7 +63,9 @@ Here, if we use `-Ofast` instead of `-O1`, we get only 12 instructions. Therefor
 For `O2`, the number of instructions are 12.<br>
 Using `-Ofast` reduces our set of instructions because this optimization level applies a broader range of aggressive optimizations. These optimizations streamline the code, eliminate redundancies, and leverage parallelism, resulting in a lower instruction count compared to `-O1`.<br>
 </details>
+
 ---
+
 <details>
   <summary><strong>Lab2 :RISC-V Spike simulator.</strong></summary>
   
@@ -95,6 +97,7 @@ Use the following command to jump to the beginning of the main section:<br>
   We can recheck using the calculator. <br>
 ![Screenshot 2024-08-07 185623](https://github.com/user-attachments/assets/d5b753c4-3ee7-4f0c-9eaf-66802fb67ec1)<br>
 </details>
+
 ---
 
 <details>
@@ -337,4 +340,5 @@ SLL r15, r11, r2
 | `LW r13, r11, 2` | I-Type | `000000000010_01011_010_01101_0000011`  | `0x002B0313`                |
 | `SLL r15, r11, r2`| R-Type | `0000000_00010_01011_001_01111_0110011` | `0x000B5B33`                |
 </details>
+
 ---
