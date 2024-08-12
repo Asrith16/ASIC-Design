@@ -346,7 +346,9 @@ SLL r15, r11, r2
 ---
 
 <details>
-  <summary><strong> Lab 4:Visualizing Functional Simulation Results with GTKWave</strong></summary>
+  <summary><strong> Lab 4:Results with GTKWave</strong></summary>
+  
+#  Lab 4:Visualizing Functional Simulation Results with GTKWave
 In the provided Verilog code, the RISC-V instructions are represented with some variations compared to the standard RISC-V ISA. Specifically, each instruction type is assigned a unique opcode in the Verilog implementation. The `func3` and `func7` values, which are used to identify the specific operation, also differ from the standard RISC-V ISA. Notably, `func7` is employed to differentiate between operations involving immediate values and other arithmetic functions; if `func7` is not required for this distinction, it is set to 0 in the Verilog code. The table below illustrates how the 32-bit instruction patterns are hardcoded using these opcodes, `func3`, and `func7` values as defined in the Verilog code.<br>
 
 ## Hardcoded table based on the provided Verilog code
@@ -382,21 +384,21 @@ In the provided Verilog code, the RISC-V instructions are represented with some 
 | ADD R14, R2, R2    | 0x00210733         | 0x00210700  |
 
 ### Wave forms
-``` ADD R6,R1,R2 ```
+``` ADD R6,R1,R2 ```<br>
 ![Screenshot 2024-08-12 190747](https://github.com/user-attachments/assets/65b65e0f-c0a6-47c9-bc7c-2764d2083987)
 
-``` SUB R7,R1,R2```
+``` SUB R7,R1,R2```<br>
 ![Screenshot 2024-08-12 191520](https://github.com/user-attachments/assets/e21346eb-6dd0-41d3-b0f0-0912873312cd)
 
-```AND R8,R1,R3```
+```AND R8,R1,R3```<br>
 ![Screenshot 2024-08-12 191918](https://github.com/user-attachments/assets/b3105bb2-ebf6-4e55-8625-19ecf0829432)
 
 
-``` OR R9,R2,R5```
+``` OR R9,R2,R5```<br>
 ![Screenshot 2024-08-12 192010](https://github.com/user-attachments/assets/f208c33c-d457-4cc8-8c42-25492ba113ee)
 
 
-``` XOR R10,R1,R4```
+``` XOR R10,R1,R4```<br>
 ![Screenshot 2024-08-12 192041](https://github.com/user-attachments/assets/82d42570-0a06-4e38-b036-2e86a75ba284)
 
 
