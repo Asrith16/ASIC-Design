@@ -267,7 +267,7 @@ SLL r15, r11, r2
 - **Immediate:** `000000000100`
 - **funct3:** `010`
 - **Instruction Type:** S-Type
-- **32-bit Instruction:** `0000000_00100_00001_010_000100_0100011`
+- **32-bit Instruction:** `0000000_00011_00001_010_00100_0100011`
 - **Hexadecimal Representation:** `0x0030A223`
 
 ### 9. `SRL r16, r11, r2`
@@ -333,7 +333,7 @@ SLL r15, r11, r2
 | `XOR r8, r5, r4`   | R-Type | `0000000_00100_00101_100_01000_0110011`     | `0x0042C433`               |
 | `SLT r10, r2, r4`  | R-Type | `0000000_00100_00010_010_01010_0110011`     | `0x00412533`               |
 | `ADDI r12, r3, 5`  | I-Type | `000000000101_00011_000_01100_0010011`      | `0x00518613`               |
-| `SW r3, r1, 4`     | S-Type | `0000000_00100_00001_010_000100_0100011`     | `0x0030A223`               |
+| `SW r3, r1, 4`     | S-Type | `0000000_00011_00001_010_00100_0100011`     | `0x0030A223`               |
 | `SRL r16, r11, r2` | R-Type | `0000000_00010_01011_101_10000_0110011`     | `0x0025D833`               |
 | `BNE r0, r1, 20`   | B-Type | `0_000001_00001_00000_001_0100_0_1100011`     | `0x02101463`               |
 | `BEQ r0, r0, 15`   | B-Type | `0_000000_00000_00000_000_1111_0_1100011`     | `0x00000F63`               |
@@ -363,5 +363,73 @@ In the provided Verilog code, the RISC-V instructions are represented with some 
 | LW r13, r11, 2  | 000000000010_01011_000_01101_0000001   | 0x0258681 |000000000010_01011_010_01101_0000011  | 0x0025A683      |
 | BEQ r0, r0, 15  | 0_000000_00000_00000_000_1111_0_1100011   | 0X00f00002 |0_000000_00000_00000_000_1111_0_1100011  | 0x00000F63      |
 | SRL r16, r11, r2  | 0000000_00010_01011_001_10000_0000011 |0x00259803  | 0000000_00010_01011_101_10000_0110011 | 0x0025D833      |
+
+## Output Waveforms for the instructions provided in the verilog code:
+
+| Operation          | Standard RISCV ISA | Hardcoded ISA |
+|--------------------|---------------------|---------------|
+| ADD R6, R1, R2     | 0x00110333        | 0x02208300  |
+| SUB R7, R1, R2     | 0x402083b3        | 0x02209380  |
+| AND R8, R1, R3     | 0x0030f433        | 0x0230a400  |
+| OR R9, R2, R5      | 0x005164b3        | 0x02513480  |
+| XOR R10, R1, R4    | 0x0040c533        | 0x0240c500  |
+| SLT R11, R2, R4     | 0x0045a0b3        | 0x02415580  |
+| ADDI R12, R4, 5    | 0x004120b3        | 0x00520600  |
+| BEQ R0, R0, 15     | 0x00000f63        | 0x00f00002  |
+| SW R3, R1, 2       | 0x0030a123        | 0x00209181  |
+| LW R13, R1, 2      | 0x0020a683        | 0x00208681  |
+| BEQ R0, R0, 15   | 0x00000f63    | 0x00f00002   |
+| ADD R14, R2, R2    | 0x00210733         | 0x00210700  |
+
+### Wave forms
+``` ADD R6,R1,R2 ```
+![Screenshot 2024-08-12 190747](https://github.com/user-attachments/assets/65b65e0f-c0a6-47c9-bc7c-2764d2083987)
+
+``` SUB R7,R1,R2```
+![Screenshot 2024-08-12 191520](https://github.com/user-attachments/assets/e21346eb-6dd0-41d3-b0f0-0912873312cd)
+
+```AND R8,R1,R3```
+![Screenshot 2024-08-12 191918](https://github.com/user-attachments/assets/b3105bb2-ebf6-4e55-8625-19ecf0829432)
+
+
+``` OR R9,R2,R5```
+![Screenshot 2024-08-12 192010](https://github.com/user-attachments/assets/f208c33c-d457-4cc8-8c42-25492ba113ee)
+
+
+``` XOR R10,R1,R4```
+![Screenshot 2024-08-12 192041](https://github.com/user-attachments/assets/82d42570-0a06-4e38-b036-2e86a75ba284)
+
+
+```SLT R11,R2,R4```
+
+
+```ADDI R12,R4,5```
+![Screenshot 2024-08-12 192105](https://github.com/user-attachments/assets/fda0c504-de9a-4ffd-9165-551b6147a055)
+
+
+```BEQ R0,R0,15```
+![Screenshot 2024-08-12 192136](https://github.com/user-attachments/assets/125fa7b9-0683-4aba-afd4-17b2415318f4)
+
+
+``` SW R3,R1,2```
+![Screenshot 2024-08-12 192202](https://github.com/user-attachments/assets/c89e8614-962d-4514-ba2e-aac9573dc578)
+
+
+```LW R13, R1, 2 ```
+![Screenshot 2024-08-12 192259](https://github.com/user-attachments/assets/5227f230-3623-457a-8591-d1acae01da30)
+
+
+```BEQ R0, R0, 15```
+![Screenshot 2024-08-12 192407](https://github.com/user-attachments/assets/9197cc14-8ce6-464a-93f4-62b6b9514cc8)
+
+
+```ADD R14, R2, R2```
+![Screenshot 2024-08-12 192457](https://github.com/user-attachments/assets/80c63b58-e584-4539-81c2-d202864b357a)
+
+
+Output form:
+
+![Screenshot 2024-08-12 192601](https://github.com/user-attachments/assets/964f03ae-ccbd-4a26-a117-703cae7b548f)
+
 
 </details>
