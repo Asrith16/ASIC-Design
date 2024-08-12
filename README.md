@@ -184,161 +184,166 @@ LW r13, r11, 2
 SLL r15, r11, r2
 ```
 
-#### 1. `ADD r5, r4, r5`
+### 1. `ADD r5, r4, r5`
 - **Opcode:** `0110011`
 - **rd:** `r5 = 00101`
 - **rs1:** `r4 = 00100`
 - **rs2:** `r5 = 00101`
-- **func3:** `000`
-- **func7:** `0000000`
+- **funct3:** `000`
+- **funct7:** `0000000`
 - **Instruction Type:** R-Type
 - **32-bit Instruction:** `0000000_00101_00100_000_00101_0110011`
-- **Hexadecimal Representation:** `0x00A282B3`
+- **Hexadecimal Representation:** `0x005202B3`
 
-#### 2. `SUB r5, r5, r4`
+### 2. `SUB r5, r5, r4`
 - **Opcode:** `0110011`
 - **rd:** `r5 = 00101`
 - **rs1:** `r5 = 00101`
 - **rs2:** `r4 = 00100`
-- **func3:** `000`
-- **func7:** `0100000`
+- **funct3:** `000`
+- **funct7:** `0100000`
 - **Instruction Type:** R-Type
-- **32-bit Instruction:** `0100000_00101_00100_000_00101_0110011`
-- **Hexadecimal Representation:** `0x400282B3`
+- **32-bit Instruction:** `0100000_00100_00101_000_00101_0110011`
+- **Hexadecimal Representation:** `0x404282B3`
 
-#### 3. `AND r4, r5, r5`
+### 3. `AND r4, r5, r5`
 - **Opcode:** `0110011`
 - **rd:** `r4 = 00100`
 - **rs1:** `r5 = 00101`
 - **rs2:** `r5 = 00101`
-- **func3:** `111`
-- **func7:** `0000000`
+- **funct3:** `111`
+- **funct7:** `0000000`
 - **Instruction Type:** R-Type
 - **32-bit Instruction:** `0000000_00101_00101_111_00100_0110011`
-- **Hexadecimal Representation:** `0x00A32333`
+- **Hexadecimal Representation:** `0x00A2F233`
 
-#### 4. `OR r8, r4, r5`
+### 4. `OR r8, r4, r5`
 - **Opcode:** `0110011`
 - **rd:** `r8 = 01000`
 - **rs1:** `r4 = 00100`
 - **rs2:** `r5 = 00101`
-- **func3:** `110`
-- **func7:** `0000000`
+- **funct3:** `110`
+- **funct7:** `0000000`
 - **Instruction Type:** R-Type
 - **32-bit Instruction:** `0000000_00101_00100_110_01000_0110011`
-- **Hexadecimal Representation:** `0x00A303B3`
+- **Hexadecimal Representation:** `0x00526433`
 
-#### 5. `XOR r8, r5, r4`
+### 5. `XOR r8, r5, r4`
 - **Opcode:** `0110011`
 - **rd:** `r8 = 01000`
 - **rs1:** `r5 = 00101`
 - **rs2:** `r4 = 00100`
-- **func3:** `100`
-- **func7:** `0000000`
+- **funct3:** `100`
+- **funct7:** `0000000`
 - **Instruction Type:** R-Type
-- **32-bit Instruction:** `0000000_00101_00100_100_01000_0110011`
-- **Hexadecimal Representation:** `0x00A2C333`
+- **32-bit Instruction:** `0000000_00100_00101_100_01000_0110011`
+- **Hexadecimal Representation:** `0x0042C433`
 
-#### 6. `SLT r10, r2, r4`
+### 6. `SLT r10, r2, r4`
 - **Opcode:** `0110011`
 - **rd:** `r10 = 01010`
 - **rs1:** `r2 = 00010`
 - **rs2:** `r4 = 00100`
-- **func3:** `010`
-- **func7:** `0000000`
+- **funct3:** `010`
+- **funct7:** `0000000`
 - **Instruction Type:** R-Type
 - **32-bit Instruction:** `0000000_00100_00010_010_01010_0110011`
-- **Hexadecimal Representation:** `0x0002A233`
+- **Hexadecimal Representation:** `0x00412533`
 
-#### 7. `ADDI r12, r3, 5`
+### 7. `ADDI r12, r3, 5`
 - **Opcode:** `0010011`
 - **rd:** `r12 = 01100`
 - **rs1:** `r3 = 00011`
 - **Immediate:** `000000000101`
-- **func3:** `000`
+- **funct3:** `000`
 - **Instruction Type:** I-Type
 - **32-bit Instruction:** `000000000101_00011_000_01100_0010011`
-- **Hexadecimal Representation:** `0x00530313`
+- **Hexadecimal Representation:** `0x00518613`
 
-#### 8. `SW r3, r1, 4`
+### 8. `SW r3, r1, 4`
 - **Opcode:** `0100011`
 - **rs1:** `r1 = 00001`
 - **rs2:** `r3 = 00011`
 - **Immediate:** `000000000100`
-- **func3:** `010`
+- **funct3:** `010`
 - **Instruction Type:** S-Type
-- **32-bit Instruction:** `000000000100_00001_010_00011_0100011`
-- **Hexadecimal Representation:** `0x00410323`
+- **32-bit Instruction:** `0000000_00100_00001_010_00011_0100011`
+- **Hexadecimal Representation:** `0x0040A223`
 
-#### 9. `SRL r16, r11, r2`
+### 9. `SRL r16, r11, r2`
 - **Opcode:** `0110011`
 - **rd:** `r16 = 10000`
 - **rs1:** `r11 = 01011`
 - **rs2:** `r2 = 00010`
-- **func3:** `101`
-- **func7:** `0000000`
+- **funct3:** `101`
+- **funct7:** `0000000`
 - **Instruction Type:** R-Type
 - **32-bit Instruction:** `0000000_00010_01011_101_10000_0110011`
-- **Hexadecimal Representation:** `0x000B5003`
+- **Hexadecimal Representation:** `0x0025D833`
 
-#### 10. `BNE r0, r1, 20`
+### 10. `BNE r0, r1, 20`
 - **Opcode:** `1100011`
-- **rs1:** `r0 = 00000`
-- **rs2:** `r1 = 00001`
+- **rs1:** `r1 = 00001`
+- **rs2:** `r0 = 00000`
 - **Immediate:** `000000000101`
-- **func3:** `001`
+- **funct3:** `001`
 - **Instruction Type:** B-Type
-- **32-bit Instruction:** `000000000101_00001_001_00000_1100011`
-- **Hexadecimal Representation:** `0x005121E3`
+- **32-bit Instruction:** `0000000_00000_00001_001_00000_1100011`
+- **Hexadecimal Representation:** `0x02101463`
 
-#### 11. `BEQ r0, r0, 15`
+### 11. `BEQ r0, r0, 15`
 - **Opcode:** `1100011`
 - **rs1:** `r0 = 00000`
 - **rs2:** `r0 = 00000`
 - **Immediate:** `000000000111`
-- **func3:** `000`
+- **funct3:** `000`
 - **Instruction Type:** B-Type
-- **32-bit Instruction:** `000000000111_00000_000_00000_1100011`
-- **Hexadecimal Representation:** `0x00700063`
+- **32-bit Instruction:** `0000000_00000_00000_000_00000_1100011`
+- **Hexadecimal Representation:** `0x00000F63`
 
-#### 12. `LW r13, r11, 2`
+### 12. `LW r13, r11, 2`
 - **Opcode:** `0000011`
 - **rd:** `r13 = 01101`
 - **rs1:** `r11 = 01011`
 - **Immediate:** `000000000010`
-- **func3:** `010`
+- **funct3:** `010`
 - **Instruction Type:** I-Type
 - **32-bit Instruction:** `000000000010_01011_010_01101_0000011`
-- **Hexadecimal Representation:** `0x002B0313`
+- **Hexadecimal Representation:** `0x0025A683`
 
-#### 13. `SLL r15, r11, r2`
+### 13. `SLL r15, r11, r2`
 - **Opcode:** `0110011`
 - **rd:** `r15 = 01111`
 - **rs1:** `r11 = 01011`
 - **rs2:** `r2 = 00010`
-- **func3:** `001`
-- **func7:** `0000000`
+- **funct3:** `001`
+- **funct7:** `0000000`
 - **Instruction Type:** R-Type
 - **32-bit Instruction:** `0000000_00010_01011_001_01111_0110011`
-- **Hexadecimal Representation:** `0x000B5B33`
+- **Hexadecimal Representation:** `0x002597B3`
 
-### Summary of RISC-V Instructions
+## Summary of RISC-V Instructions
 
-| Instruction       | Type   | 32-bit Representation                       | Hexadecimal Representation |
-|-------------------|--------|---------------------------------------------|-----------------------------|
-| `ADD r5, r4, r5` | R-Type | `0000000_00101_00100_000_00101_0110011`  | `0x00A282B3`                |
-| `SUB r5, r5, r4` | R-Type | `0100000_00101_00100_000_00101_0110011`  | `0x400282B3`                |
-| `AND r4, r5, r5` | R-Type | `0000000_00101_00101_111_00100_0110011`  | `0x00A32333`                |
-| `OR r8, r4, r5`  | R-Type | `0000000_00101_00100_110_01000_0110011`  | `0x00A303B3`                |
-| `XOR r8, r5, r4` | R-Type | `0000000_00101_00100_100_01000_0110011`  | `0x00A2C333`                |
-| `SLT r10, r2, r4`| R-Type | `0000000_00100_00010_010_01010_0110011`  | `0x0002A233`                |
-| `ADDI r12, r3, 5`| I-Type | `000000000101_00011_000_01100_0010011`  | `0x00530313`                |
-| `SW r3, r1, 4`   | S-Type | `000000000100_00001_010_00011_0100011`  | `0x00410323`                |
-| `SRL r16, r11, r2`| R-Type | `0000000_00010_01011_101_10000_0110011` | `0x000B5003`                |
-| `BNE r0, r1, 20` | B-Type | `000000000101_00001_001_00000_1100011`  | `0x005121E3`                |
-| `BEQ r0, r0, 15` | B-Type | `000000000111_00000_000_00000_1100011`  | `0x00700063`                |
-| `LW r13, r11, 2` | I-Type | `000000000010_01011_010_01101_0000011`  | `0x002B0313`                |
-| `SLL r15, r11, r2`| R-Type | `0000000_00010_01011_001_01111_0110011` | `0x000B5B33`                |
+| Instruction        | Type   | 32-bit Representation                       | Hexadecimal Representation |
+|--------------------|--------|---------------------------------------------|----------------------------|
+| `ADD r5, r4, r5`   | R-Type | `0000000_00101_00100_000_00101_0110011`     | `0x005202B3`               |
+| `SUB r5, r5, r4`   | R-Type | `0100000_00100_00101_000_00101_0110011`     | `0x404282B3`               |
+| `AND r4, r5, r5`   | R-Type | `0000000_00101_00101_111_00100_0110011`     | `0x00A2F233`               |
+| `OR r8, r4, r5`    | R-Type | `0000000_00101_00100_110_01000_0110011`     | `0x00526433`               |
+| `XOR r8, r5, r4`   | R-Type | `0000000_00100_00101_100_01000_0110011`     | `0x0042C433`               |
+| `SLT r10, r2, r4`  | R-Type | `0000000_00100_00010_010_01010_0110011`     | `0x00412533`               |
+| `ADDI r12, r3, 5`  | I-Type | `000000000101_00011_000_01100_0010011`      | `0x00518613`               |
+| `SW r3, r1, 4`     | S-Type | `0000000_00100_00001_010_00011_0100011`     | `0x0040A223`               |
+| `SRL r16, r11, r2` | R-Type | `0000000_00010_01011_101_10000_0110011`     | `0x0025D833`               |
+| `BNE r0, r1, 20`   | B-Type | `0000000_00000_00001_001_00000_1100011`     | `0x02101463`               |
+| `BEQ r0, r0, 15`   | B-Type | `0000000_00000_00000_000_00000_1100011`     | `0x00000F63`               |
+| `LW r13, r11, 2`   | I-Type | `000000000010_01011_010_01101_0000011`      | `0x0025A683`               |
+| `SLL r15, r11, r2` | R-Type | `0000000_00010_01011_001_01111_0110011`     | `0x002597B3`               |
+
+
 </details>
-
 ---
+
+<details>
+  <summary><strong> Lab 4:</strong></summary>
+</details>
