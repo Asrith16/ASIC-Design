@@ -349,5 +349,19 @@ SLL r15, r11, r2
   <summary><strong> Lab 4:Visualizing Functional Simulation Results with GTKWave</strong></summary>
 In the provided Verilog code, the RISC-V instructions are represented with some variations compared to the standard RISC-V ISA. Specifically, each instruction type is assigned a unique opcode in the Verilog implementation. The `func3` and `func7` values, which are used to identify the specific operation, also differ from the standard RISC-V ISA. Notably, `func7` is employed to differentiate between operations involving immediate values and other arithmetic functions; if `func7` is not required for this distinction, it is set to 0 in the Verilog code. The table below illustrates how the 32-bit instruction patterns are hardcoded using these opcodes, `func3`, and `func7` values as defined in the Verilog code.<br>
 
+## Hardcoded table based on the provided Verilog code
+| Instruction     | Hardcoded 32bit pattern | Hardcoded hexadecimal pattern| 32bit pattern   | Hexadecimal pattern |
+|-----------------|-------------------------|------------------------------|---------------------|---------------|
+| ADD r5, r4, r5  | 0000001_00101_00100_000_00101_0000000 | 0x02520280 | 0000000_00101_00100_000_00101_0110011  | 0x005202B3 |
+| SUB r5, r5, r4  | 0000001_00100_00101_001_00101_0000000 | 0x02429280  | 0100000_00100_00101_000_00101_0110011  | 0x404282B3      |
+| AND r4, r5, r5  | 0000001_00101_00101_010_00100_0000000 | 0x0252A200 |0000000_00101_00101_111_00100_0110011  | 0x0052F233     |
+| OR r8, r4, r5  | 0000001_00101_00100_011_01000_0000000  | 0x02523400 |0000000_00101_00100_110_01000_0110011  | 0x00526433      |
+| XOR r8, r5, r4  | 0000001_00100_00101_100_01000_0000000 | 0x0242C400 |0000000_00100_00101_100_01000_0110011  | 0x0042C433      |
+| SLT r10, r2, r4  | 0000001_00100_00010_101_01010_0000000| 0x02415500 | 0000000_00100_00010_010_01010_0110011  | 0x00412533      |
+| ADDI r12, r3, 5  | 000000000101_00011_000_01100_0000000 | 0x00518600 |000000000101_00011_000_01100_0010011  | 0x00518613      |
+| SW r3, r1, 4  | 0000000_00011_00001_001_00100_0000001   | 0X00309201| 0000000_00011_00001_010_00100_0100011  | 0x0030A223     |
+| LW r13, r11, 2  | 000000000010_01011_000_01101_0000001   | 0x0258681 |000000000010_01011_010_01101_0000011  | 0x0025A683      |
+| BEQ r0, r0, 15  | 0_000000_00000_00000_000_1111_0_1100011   | 0X00f00002 |0_000000_00000_00000_000_1111_0_1100011  | 0x00000F63      |
+| SRL r16, r11, r2  | 0000000_00010_01011_001_10000_0000011 |0x00259803  | 0000000_00010_01011_101_10000_0110011 | 0x0025D833      |
 
 </details>
