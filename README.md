@@ -449,6 +449,7 @@ Output form:<br>
 # Comparing Output Consistency Between RISC-V GCC and GCC Compiler
 
 The code provided is a Palindrome Checker where the user inputs an integer, and the program checks whether the number is a palindrome. The program reverses the digits of the input number and compares the reversed number with the original. If both are identical, the number is identified as a palindrome; otherwise, it is not.<br>
+<br>
 ![Screenshot 2024-08-14 203937](https://github.com/user-attachments/assets/0aed22de-b6cb-4551-becb-32197dc06697)
 
 The image below displays the output produced when the C code is executed using a standard GCC compiler:<br>
