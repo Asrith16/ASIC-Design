@@ -442,3 +442,28 @@ Output form:<br>
 
 ---
 
+
+<details>
+  <summary><strong> Lab 5: RISC-V GCC and GCC Compiler</strong></summary>
+  
+# Comparing Output Consistency Between RISC-V GCC and GCC Compiler
+
+The code provided is a Palindrome Checker where the user inputs an integer, and the program checks whether the number is a palindrome. The program reverses the digits of the input number and compares the reversed number with the original. If both are identical, the number is identified as a palindrome; otherwise, it is not.<br>
+![Screenshot 2024-08-14 203937](https://github.com/user-attachments/assets/0aed22de-b6cb-4551-becb-32197dc06697)
+
+The image below displays the output produced when the C code is executed using a standard GCC compiler:<br>
+
+![Screenshot 2024-08-14 204553](https://github.com/user-attachments/assets/440881db-fab0-4e59-86e2-4da259a753c5)
+
+The image below displays the output generated when the C code is executed using a RISC-V GCC compiler:<br>
+
+![Screenshot 2024-08-14 205024](https://github.com/user-attachments/assets/f13f862e-de61-4c15-9491-d080ffb1710c)
+
+
+By examining the images above, we can observe that the output is identical when using both the GCC and RISC-V GCC compilers. This consistency indicates that the code behaves as expected across different compiler architectures, ensuring reliability and compatibility in various development environments. This demonstrates that the program's logic is platform-independent and confirms the accuracy of the compilation process on both compilers.
+
+
+  
+</details>
+
+---
