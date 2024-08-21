@@ -577,13 +577,59 @@ We introduce `$valid_or_reset = $valid || $reset;` as a condition for triggering
 
 ![Screenshot 2024-08-21 175517](https://github.com/user-attachments/assets/e1cf5b8d-fb89-4e1e-ac2d-cb1ace330c50) <br>
 
-
-
-
-
-
-
-   
   </details>
-  
+
+<details>
+  <summary><strong> Day 4</strong></summary>
+
+# Fundamentals of RISC-V CPU Micro-architecture
+This section will discuss the implementation of a basic 3-stage RISC-V Core/CPU. The three stages include: Fetch, Decode, and Execute. The diagram below illustrates the fundamental block diagram of the CPU core:<br>
+
+![Screenshot 2024-08-21 180115](https://github.com/user-attachments/assets/8d26c27f-ed72-4cbb-abbd-53ab154c5dcc) <br>
+
+### Implementation plan:
+
+![Screenshot 2024-08-21 180155](https://github.com/user-attachments/assets/d1e368ee-b8de-4819-b25e-11794e32706d) <br>
+
+
+### 1. Program counter
+
+The Program Counter, also known as the Instruction Pointer, is a component that holds the address of the next instruction to be executed. Typically, the program counter increments by 4 to fetch the subsequent instruction from memory. If a reset occurs, the program counter is reinitialized to zero for the next instruction, after which it resumes normal operation.<br>
+
+The diagram below illustrates the functioning of the program counter.<br>
+
+![Screenshot 2024-08-21 180439](https://github.com/user-attachments/assets/7e2f298d-8e19-47f5-9315-9fbcebadc888)<br>
+
+
+![Screenshot 2024-08-21 180624](https://github.com/user-attachments/assets/f49c3724-d7b7-438f-8873-ee651dee1ee8) <br>
+
+Code:<br>
+``` $pc[31:0] = >>1$reset ? 0 : ( >>1$pc + 31'h4 ); ```
+
+### 2. Adding the instruction memory
+
+![Screenshot 2024-08-21 181059](https://github.com/user-attachments/assets/9ecf6c22-9838-4fec-88dc-c3eeef8ffad6) <br>
+
+![Screenshot 2024-08-21 181120](https://github.com/user-attachments/assets/1b07fa46-04bc-4358-96a4-6ce66fa87e05) <br>
+
+The output of the Program Counter (PC) is fed into the instruction memory, which then outputs the instruction to be executed. The program counter increments by 4 with each valid iteration. This incremented output is used to fetch the next instruction from the instruction memory.<br>
+
+The instruction memory provides a 32-bit instruction based on the input address. During the Fetch Stage, the processor retrieves the instruction from the instruction memory (IM) at the address specified by the PC.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
 </details>
