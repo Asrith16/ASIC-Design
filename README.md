@@ -568,7 +568,7 @@ Therefore, it can be observed that the given pipeline design and the recreated d
 ### 2. Pipelined Calculator
 This design is similar to the previous Sequential Calculator but incorporates a pipelined architecture and utilizes `$valid` to clear alternate values.<br>
 
-![Screenshot 2024-08-21 162923](https://github.com/user-attachments/assets/50e391c9-8ed2-4bcd-a228-49e505a054a1) <br>
+![Screenshot 2024-08-21 182420](https://github.com/user-attachments/assets/d3d77f6a-a429-4047-a25c-72c2ff87646e) <br>
 
 ![Screenshot 2024-08-21 163012](https://github.com/user-attachments/assets/d3d5a167-51a3-4bc5-9c55-51469a5d321a) <br>
 
@@ -600,8 +600,7 @@ The diagram below illustrates the functioning of the program counter.<br>
 
 ![Screenshot 2024-08-21 180439](https://github.com/user-attachments/assets/7e2f298d-8e19-47f5-9315-9fbcebadc888)<br>
 
-
-![Screenshot 2024-08-21 180624](https://github.com/user-attachments/assets/f49c3724-d7b7-438f-8873-ee651dee1ee8) <br>
+![Screenshot 2024-08-21 182158](https://github.com/user-attachments/assets/9fb85acd-7ddd-439d-98e1-505473fb965d)  <br>
 
 Code:<br>
 ``` $pc[31:0] = >>1$reset ? 0 : ( >>1$pc + 31'h4 ); ```
