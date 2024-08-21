@@ -468,3 +468,52 @@ By examining the images above, we can observe that the output is identical when 
 </details>
 
 ---
+
+<details>
+  <summary><strong>Lab 6: </strong>strong></summary>
+
+# Designing Digital Logic with TL-Verilog using Makerchip
+
+### Logic Gates
+Logic gates are the fundamental building blocks of digital circuits, executing vital logical operations on binary inputs. These gates are crucial for designing intricate systems such as processors, memory units, and controllers. In digital circuits, logic gates work with binary signals, where "0" represents low voltage and "1" represents high voltage. They process one or more input signals to generate an output signal according to defined logical functions.<br>
+
+![Screenshot 2024-08-21 093753](https://github.com/user-attachments/assets/28ddbce8-c199-4daa-93f3-fc8d0773913e)<br>
+
+### Makerchip
+Makerchip IDE is a robust tool for digital design, providing an all-in-one environment for coding, simulating, and testing HDL designs. It supports languages such as TL-Verilog, SystemVerilog, Verilog, and VHDL, offering a visual platform for real-time construction and simulation of digital systems. With its user-friendly interface and comprehensive features, Makerchip is suitable for both beginners and seasoned designers. Makerchip enables efficient prototyping, debugging, and refinement of digital designs, ensuring that circuits perform correctly before transitioning to hardware implementation.<br>
+
+
+### Transaction Level (TL) - Verilog:
+TL Verilog is a contemporary extension of traditional Verilog, developed by Redwood EDA to streamline hardware modeling and design. It offers a more abstract and efficient syntax while maintaining compatibility with standard Verilog. TL-Verilog facilitates transaction-level modeling, simplifying the management of complex microarchitectures. In this method, a transaction progresses through the architecture, interacting with components such as pipelines, arbiters, and queues. TL-Verilog is especially effective in minimizing bugs and optimizing design, particularly when used with tools like Makerchip.<br>
+
+
+## Some Basic Combinational circuits:
+### 1. Inverter:
+   The resulting block diagram and waveforms are presented as depicted:<br>
+   ![Screenshot 2024-08-21 152754](https://github.com/user-attachments/assets/2867695f-706b-4047-9662-dc6c65b36a31)
+
+### 2. 2- input AND gate:
+   The resulting block diagram and waveforms are presented as depicted:<br>
+   ![Screenshot 2024-08-21 153033](https://github.com/user-attachments/assets/d44bf330-ce4f-4b21-bf7b-43d63f1891f2)
+
+### 3. 2-input OR gate:
+   The resulting block diagram and waveforms are presented as depicted:<br>
+   ![Screenshot 2024-08-21 153131](https://github.com/user-attachments/assets/50edfc0a-c23a-4d43-94b4-7e091aa27586)
+
+### 4. 2:1 MUX
+   The resulting block diagram and waveforms are presented as depicted:<br>
+   ![Screenshot 2024-08-21 154614](https://github.com/user-attachments/assets/41df9ee3-0116-4e27-a1bd-6d7e5cb972f9)
+
+### 5. Implementation of a Combinational Calculator in TL-Verilog
+Overview of the Calculator: This section showcases a simple combinational calculator created using TL-Verilog on the Makerchip platform. The calculator performs the four basic arithmetic operations: addition, subtraction, multiplication, and division.<br>
+The resulting block diagram and waveforms are presented as depicted:<br>
+![image](https://github.com/user-attachments/assets/8036afeb-76f3-486c-b4f6-52f5c8793583)
+
+In this code snippet, two random 4-bit values, `$rand1[3:0]` and `$rand2[3:0]`, are assigned to the 32-bit variables `$val1[31:0]` and `$val2[31:0]`, respectively. The calculator then performs four arithmetic operations on these values.<br>
+
+A multiplexer (MUX), controlled by the selection bits `$sel[1:0]`, chooses the result of one of these operations. The selected output is then assigned to `$out[31:0]`.<br>
+
+
+   
+
+</details>
