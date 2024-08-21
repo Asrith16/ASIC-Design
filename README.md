@@ -640,9 +640,9 @@ The 32-bit fetched instruction must be decoded to determine the operation to be 
 The instruction format includes the opcode, immediate value, source address, and destination address. During the Decode Stage, the processor interprets the instruction according to its format and type.<br>
 Typically, the RISC-V ISA features 32 registers, each with a width of XLEN (e.g., XLEN = 32 for RV32). The register file used in this architecture supports two simultaneous read operations and one write operation.<br>
 
-![image](https://github.com/user-attachments/assets/a848f05e-fc69-4842-823b-b976a3b95dc1)
+![image](https://github.com/user-attachments/assets/a848f05e-fc69-4842-823b-b976a3b95dc1) <br>
 
-![image](https://github.com/user-attachments/assets/b7074567-7940-4153-9c39-08cf97f0b7e6)
+![image](https://github.com/user-attachments/assets/b7074567-7940-4153-9c39-08cf97f0b7e6) <br>
 
 Code:<br>
 ```
@@ -664,12 +664,93 @@ Code:<br>
          $is_b_instr = $instr[6:2] ==? 5'b11000;
          $is_j_instr = $instr[6:2] ==? 5'b11011;
          $is_u_instr = $instr[6:2] ==? 5'b0x101;
+```
+#### 3a. Immediate Decode Logic
+![image](https://github.com/user-attachments/assets/5a7406fb-6ce1-485a-b395-17a629fe94ef) <br>
+
+Code:<br>
+
+```
+             $imm[31:0] = $is_i_instr ? {{21{$instr[31]}}, $instr[30:20]} :
+             $is_s_instr ? {{21{$instr[31]}}, $instr[30:25], $instr[11:7]} :
+             $is_b_instr ? {{20{$instr[31]}}, $instr[7], $instr[30:25], $instr[11:8], 1'b0} :
+             $is_u_instr ? {$instr[31:12], 12'b0} :
+             $is_j_instr ? {{12{$instr[31]}}, $instr[19:12], $instr[20], $instr[30:21], 1'b0} : 32'b0;
+````
+
+#### 3b. Decoding logic for the other fields like rs1,rs2,funct3,funct7
+In addition to the immediate field, several other fields also require decoding. The code for this process is as follows:<br>
+Code:
+```
+         $rs2_valid = $is_r_instr || $is_s_instr || $is_b_instr;
+         ?$rs2_valid
+            $rs2[4:0] = $instr[24:20];
+            
+         $rs1_valid = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+         ?$rs1_valid
+            $rs1[4:0] = $instr[19:15];
+         
+         $funct3_valid = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+         ?$funct3_valid
+            $funct3[2:0] = $instr[14:12];
+            
+         $funct7_valid = $is_r_instr ;
+         ?$funct7_valid
+            $funct7[6:0] = $instr[31:25];
+            
+         $rd_valid = $is_r_instr || $is_i_instr || $is_u_instr || $is_j_instr;
+         ?$rd_valid
+            $rd[4:0] = $instr[11:7];
+
+         $opcode[6:0] = $instr[6:0];
+```
+At any given moment, only one instruction is decoded, and it may belong to any of the six instruction types. Therefore, it is crucial to validate the instruction to ensure it matches its specific category, thereby avoiding conflicts between different instruction types.<br>
+
+![image](https://github.com/user-attachments/assets/1bd0370e-a6c6-4816-9e56-b85517fce671)
 
 
+#### 3c. Individual Instructions Coding
+![image](https://github.com/user-attachments/assets/f4b9df4c-7a78-4de5-b5ba-2d3cdbfcc8eb)
 
+To decode the individual instructions outlined above, use the following code:<br>
+```
+$dec_bits [10:0] = {$funct7[5], $funct3, $opcode};
+$is_beq = $dec_bits ==? 11'bx_000_1100011;
+$is_bne = $dec_bits ==? 11'bx_001_1100011;
+$is_blt = $dec_bits ==? 11'bx_100_1100011;
+$is_bge = $dec_bits ==? 11'bx_101_1100011;
+$is_bltu = $dec_bits ==? 11'bx_110_1100011;
+$is_bgeu = $dec_bits ==? 11'bx_111_1100011;
+$is_addi = $dec_bits ==? 11'bx_000_0010011;
+$is_add = $dec_bits ==? 11'b0_000_0110011;
+```
 
+We also need to update the program counter to handle branch instructions.<br>
+```
+$pc[31:0] = >>1$reset ? 32'b0 :
+            >>1$taken_branch ? >>1$br_target_pc :
+            >>1$pc + 32'd4;
+```
+output:
+![image](https://github.com/user-attachments/assets/a236b2b3-4f98-40e1-8fb1-c1b32f54e47a)
 
+### 4. Register File Read and Enable
+In this setup, instructions are fetched from the instruction memory and stored in registers. Two register slots are used to read these instructions, which are then sent to the ALU for processing.<br>
 
+![image](https://github.com/user-attachments/assets/4ec7b570-6887-418e-a20d-95f1790a4ad9) <br>
+
+![image](https://github.com/user-attachments/assets/69643cfa-bdb7-496a-bec6-42f567241580)
+
+Code:<br>
+```
+
+$rf_rd_en1 = $rs1_valid;
+$rf_rd_en2 = $rs2_valid;
+$rf_rd_index1[4:0] = $rs1;
+$rf_rd_index2[4:0] = $rs2;
+$src1_value[31:0] = $rf_rd_data1;
+$src2_value[31:0] = $rf_rd_data2;
+```
 
 
 
