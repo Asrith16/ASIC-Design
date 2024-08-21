@@ -615,10 +615,55 @@ The output of the Program Counter (PC) is fed into the instruction memory, which
 
 The instruction memory provides a 32-bit instruction based on the input address. During the Fetch Stage, the processor retrieves the instruction from the instruction memory (IM) at the address specified by the PC.<br>
 
-![image](https://github.com/user-attachments/assets/2ef6c7d2-b295-4f98-9c2c-676cd9fbf968)
+![image](https://github.com/user-attachments/assets/e08019d4-8349-4d62-a832-9e33b6fb0fdd) <br>
 
+Code:<br>
+```
+     @0
+         $reset = *reset;
+         $clc_asr = *clk;
+         $pc[31:0] = >>1$reset ? 0 : ( >>1$pc + 31'h4 );
+         $imem_rd_en = >>1$reset ? 0 : 1;
+         $imem_rd_addr[31:0] = $pc[M4_IMEM_INDEX_CNT+1:2];
+      @1
+         $instr[31:0] = $imem_rd_data[31:0];
+```
+### 3. Instruction Decoding 
+The 32-bit fetched instruction must be decoded to determine the operation to be performed as well as the source and destination addresses. There are six types of instructions:<br>
 
+-**R-type**: Register
+-**I-type**: Immediate
+-**S-type**: Store
+-**B-type**: Branch (Conditional Jump)
+-**U-type**: Upper Immediate
+-**J-type**: Jump (Unconditional Jump)
+The instruction format includes the opcode, immediate value, source address, and destination address. During the Decode Stage, the processor interprets the instruction according to its format and type.<br>
+Typically, the RISC-V ISA features 32 registers, each with a width of XLEN (e.g., XLEN = 32 for RV32). The register file used in this architecture supports two simultaneous read operations and one write operation.<br>
 
+![image](https://github.com/user-attachments/assets/a848f05e-fc69-4842-823b-b976a3b95dc1)
+
+![image](https://github.com/user-attachments/assets/b7074567-7940-4153-9c39-08cf97f0b7e6)
+
+Code:<br>
+```
+      @0
+         $reset = *reset;
+         $clc_asr = *clk;
+         $pc[31:0] = >>1$reset ? 0 : ( >>1$pc + 31'h4 );
+         $imem_rd_en = >>1$reset ? 0 : 1;
+         $imem_rd_addr[31:0] = $pc[M4_IMEM_INDEX_CNT+1:2];
+      @1
+         $instr[31:0] = $imem_rd_data[31:0];
+         $is_i_instr = $instr[6:2] ==? 5'b0000x ||
+              $instr[6:2] ==? 5'b001x0 ||
+              $instr[6:2] ==? 5'b11001;
+         $is_r_instr = $instr[6:2] ==? 5'b01011 ||
+              $instr[6:2] ==? 5'b011x0 ||
+              $instr[6:2] ==? 5'b10100;
+         $is_s_instr = $instr[6:2] ==? 5'b0100x;
+         $is_b_instr = $instr[6:2] ==? 5'b11000;
+         $is_j_instr = $instr[6:2] ==? 5'b11011;
+         $is_u_instr = $instr[6:2] ==? 5'b0x101;
 
 
 
