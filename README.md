@@ -615,6 +615,7 @@ The output of the Program Counter (PC) is fed into the instruction memory, which
 
 The instruction memory provides a 32-bit instruction based on the input address. During the Fetch Stage, the processor retrieves the instruction from the instruction memory (IM) at the address specified by the PC.<br>
 
+![image](https://github.com/user-attachments/assets/2ef6c7d2-b295-4f98-9c2c-676cd9fbf968)
 
 
 
