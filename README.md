@@ -470,7 +470,10 @@ By examining the images above, we can observe that the output is identical when 
 ---
 
 <details>
-  <summary><strong>Lab 6: </strong>strong></summary>
+  <summary><strong>Lab 6: </strong></summary>
+
+  <details>
+  <summary><strong>Day 3</strong></summary>
 
 # Designing Digital Logic with TL-Verilog using Makerchip
 
@@ -507,13 +510,80 @@ TL Verilog is a contemporary extension of traditional Verilog, developed by Redw
 ### 5. Implementation of a Combinational Calculator in TL-Verilog
 Overview of the Calculator: This section showcases a simple combinational calculator created using TL-Verilog on the Makerchip platform. The calculator performs the four basic arithmetic operations: addition, subtraction, multiplication, and division.<br>
 The resulting block diagram and waveforms are presented as depicted:<br>
+
 ![image](https://github.com/user-attachments/assets/8036afeb-76f3-486c-b4f6-52f5c8793583)
 
 In this code snippet, two random 4-bit values, `$rand1[3:0]` and `$rand2[3:0]`, are assigned to the 32-bit variables `$val1[31:0]` and `$val2[31:0]`, respectively. The calculator then performs four arithmetic operations on these values.<br>
 
 A multiplexer (MUX), controlled by the selection bits `$sel[1:0]`, chooses the result of one of these operations. The selected output is then assigned to `$out[31:0]`.<br>
 
+![Screenshot 2024-08-21 160425](https://github.com/user-attachments/assets/0ed3f8e0-eee7-45b9-b140-5f991597dff0)
+
+## SEquential Circuits
+
+A sequential circuit is a type of digital circuit that utilizes memory elements to store data, enabling it to produce outputs based on both current inputs and the circuit’s prior state. In contrast to combinational circuits, which rely solely on present inputs, sequential circuits incorporate feedback loops and storage components like flip-flops or registers to monitor their internal state. This internal state, combined with the current inputs, dictates the circuit’s functionality, making it capable of performing tasks that require a history of inputs, such as counting, data storage, or event sequencing.<br>
+
+### 1.Counter Series:
+
+The block diagram and waveforms generated are displayed below:<br>
+![Screenshot 2024-08-21 161052](https://github.com/user-attachments/assets/85cff099-3dfd-4bc9-b474-a9d22589224a) <br>
+
+![Screenshot 2024-08-21 161219](https://github.com/user-attachments/assets/2cf54660-8876-4055-8120-956a6acbc705)
+
+### 2. Fibbonacci Series:
+
+The block diagram and waveforms generated are displayed below:<br>
+
+![Screenshot 2024-08-21 161435](https://github.com/user-attachments/assets/2779d46b-a43d-49b2-bb97-be76abd6b9ce) <br>
+
+
+![image](https://github.com/user-attachments/assets/4b490f01-0945-4a28-bdc6-7237da52e88e)
+
+### 3. Sequential Calculator:
+
+This design is similar to the previous combinational calculator but simulates a real-world scenario where the result of the previous operation is used as one of the inputs for the next operation. When the circuit is reset, the result is cleared to zero.<br>
+
+![Screenshot 2024-08-21 161837](https://github.com/user-attachments/assets/0f901d7a-5ff6-4560-b804-d19da54cc1a4)<br>
+
+![Screenshot 2024-08-21 161920](https://github.com/user-attachments/assets/d90fe0a2-c3d3-4b1e-8262-f388e9f63960) <br>
+
+![Screenshot 2024-08-21 161805](https://github.com/user-attachments/assets/6192171d-ed81-4b7e-be3f-6d11441192c2) <br>
+
+
+## Pipelined Logic
+In Transaction-Level Verilog (TL-Verilog), pipelined logic is effectively modeled using pipeline constructs that represent data movement through various stages, with each stage corresponding to a clock cycle. This method streamlines the modeling of sequential logic by managing state transitions automatically and providing clear, concise representations of complex multi-stage operations. This enhances both the clarity and maintainability of the design.<br>
+
+### 1. Recreating the Design
+
+![Screenshot 2024-08-21 162218](https://github.com/user-attachments/assets/71aff8b9-aa48-4c88-8c09-5ec86ce791fb) <br>
+
+
+![Screenshot 2024-08-21 162446](https://github.com/user-attachments/assets/82066fc0-54a3-4944-bf7e-e13f830e1cb6) <br>
+
+![Screenshot 2024-08-21 162521](https://github.com/user-attachments/assets/c86b3a8f-1412-45fd-a76a-52fa833d1d7f) <br>
+
+Therefore, it can be observed that the given pipeline design and the recreated design are identical.<br>
+
+
+### 2. Pipelined Calculator
+This design is similar to the previous Sequential Calculator but incorporates a pipelined architecture and utilizes `$valid` to clear alternate values.<br>
+
+![Screenshot 2024-08-21 162923](https://github.com/user-attachments/assets/50e391c9-8ed2-4bcd-a228-49e505a054a1) <br>
+
+![Screenshot 2024-08-21 163012](https://github.com/user-attachments/assets/d3d5a167-51a3-4bc5-9c55-51469a5d321a) <br>
+
+### 3. Cycle Calculator with validity
+We introduce `$valid_or_reset = $valid || $reset;` as a condition for triggering calculations, replacing the previous method of setting `$out` to zero.<br>
+
+![Screenshot 2024-08-21 175517](https://github.com/user-attachments/assets/e1cf5b8d-fb89-4e1e-ac2d-cb1ace330c50) <br>
+
+
+
+
+
+
 
    
-
+  </details>
+  
 </details>
