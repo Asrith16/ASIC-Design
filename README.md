@@ -470,7 +470,7 @@ By examining the images above, we can observe that the output is identical when 
 ---
 
 <details>
-  <summary><strong>Lab 6:  </strong></summary>
+  <summary><strong>Lab 6: 5 Stage pipelined RISC-V processor  </strong></summary>
 
   <details>
   <summary><strong>Day 3</strong></summary>
@@ -810,6 +810,15 @@ Code:<br>
 Upon checking the log file we get the following result:
 
 ![Screenshot 2024-08-21 223921](https://github.com/user-attachments/assets/bd2be7a0-7c87-4a59-961f-2035042c4038)
+
+Results:<br>
+![image](https://github.com/user-attachments/assets/8dfd0857-8f92-48be-a73d-ba792df4b34d) <br>
+
+![image](https://github.com/user-attachments/assets/7834c62d-8972-40ed-98e1-9dd138ce8e4c) <br>
+
+![image](https://github.com/user-attachments/assets/5f4aced4-17f3-41cd-9d8e-13f629d3cab3) <br>
+
+
 </details>
 
 <details>
