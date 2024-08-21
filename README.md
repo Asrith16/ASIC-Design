@@ -635,6 +635,8 @@ The 32-bit fetched instruction must be decoded to determine the operation to be 
 - **B-type**: Branch (Conditional Jump)
 - **U-type**: Upper Immediate
 - **J-type**: Jump (Unconditional Jump)
+
+
 The instruction format includes the opcode, immediate value, source address, and destination address. During the Decode Stage, the processor interprets the instruction according to its format and type.<br>
 Typically, the RISC-V ISA features 32 registers, each with a width of XLEN (e.g., XLEN = 32 for RV32). The register file used in this architecture supports two simultaneous read operations and one write operation.<br>
 
@@ -795,6 +797,20 @@ $taken_branch = $is_beq ? ($src1_value == $src2_value):
 $br_target_pc[31:0] = $pc +$imm;
 ```
 
+## Testbench
+
+To verify the correctness of the code, we use a testbench to check the implementation over the first five cycles.<br>
+Code:<br>
+```
+*passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9) ;
+```
+Upon checking the log file we get the following result:
+
+![Screenshot 2024-08-21 223921](https://github.com/user-attachments/assets/bd2be7a0-7c87-4a59-961f-2035042c4038)
+</details>
+
+<details>
+  <summary><strong>Day 5</strong></summary>
 
 
 
@@ -804,5 +820,16 @@ $br_target_pc[31:0] = $pc +$imm;
 
 
 
+
+
+
+
+
+
+
+
+  
 </details>
 </details>
+
+---
