@@ -588,9 +588,7 @@ This section will discuss the implementation of a basic 3-stage RISC-V Core/CPU.
 ![Screenshot 2024-08-21 180115](https://github.com/user-attachments/assets/8d26c27f-ed72-4cbb-abbd-53ab154c5dcc) <br>
 
 ### Implementation plan:
-
 ![Screenshot 2024-08-21 180155](https://github.com/user-attachments/assets/d1e368ee-b8de-4819-b25e-11794e32706d) <br>
-
 
 ### 1. Program counter
 
@@ -631,12 +629,12 @@ Code:<br>
 ### 3. Instruction Decoding 
 The 32-bit fetched instruction must be decoded to determine the operation to be performed as well as the source and destination addresses. There are six types of instructions:<br>
 
--**R-type**: Register
--**I-type**: Immediate
--**S-type**: Store
--**B-type**: Branch (Conditional Jump)
--**U-type**: Upper Immediate
--**J-type**: Jump (Unconditional Jump)
+- **R-type**: Register
+- **I-type**: Immediate
+- **S-type**: Store
+- **B-type**: Branch (Conditional Jump)
+- **U-type**: Upper Immediate
+- **J-type**: Jump (Unconditional Jump)
 The instruction format includes the opcode, immediate value, source address, and destination address. During the Decode Stage, the processor interprets the instruction according to its format and type.<br>
 Typically, the RISC-V ISA features 32 registers, each with a width of XLEN (e.g., XLEN = 32 for RV32). The register file used in this architecture supports two simultaneous read operations and one write operation.<br>
 
@@ -751,6 +749,55 @@ $rf_rd_index2[4:0] = $rs2;
 $src1_value[31:0] = $rf_rd_data1;
 $src2_value[31:0] = $rf_rd_data2;
 ```
+
+### 5. Arithmetic and Logic unit
+![image](https://github.com/user-attachments/assets/faf1bbb4-2261-4693-8bdd-dcb163bf01af)<br>
+
+Used to execute arithmetic operations on the values stored in the registers. The code for this is as follows:<br>
+![image](https://github.com/user-attachments/assets/57cd558b-85cb-4ff5-b927-228621ab9f23)
+Code:
+```
+$result[31:0] = $is_addi ? $src1_value + $imm :
+                $is_add ? $src1_value + $src2_value :
+                32'bx ;
+```
+
+### 6. Register File write
+![image](https://github.com/user-attachments/assets/016f9e12-9066-4434-bb66-7588924687bf)
+
+After the ALU performs operations on the values stored in the registers, we may need to write the results back into the registers. This is done using the register file write operation. Additionally, we must ensure that no values are written to the destination register if it is x0, as it is designed to always remain zero. The code for this process is as follows:<br>
+
+![image](https://github.com/user-attachments/assets/1d1301e1-2b73-45be-b4d0-29f37755ef35)
+Code:<br>
+```
+$rf_wr_en = $rd_valid && $rd != 5'b0;
+$rf_wr_index[4:0] = $rd;
+$rf_wr_data[31:0] = $result;
+```
+
+### 7. Branch Instructions
+![image](https://github.com/user-attachments/assets/53e9d344-03a9-439c-b89f-3e9b9799c223)
+
+Based on the control input, we might need to jump to a different address after executing a specific instruction, depending on conditions generated at runtime. This is managed using branch instructions. The code for this operation is as follows:
+Output:
+![image](https://github.com/user-attachments/assets/a09d5618-5fc1-431b-8d0f-83848c677e4e)
+
+Code:<br>
+```
+
+$taken_branch = $is_beq ? ($src1_value == $src2_value):
+                $is_bne ? ($src1_value != $src2_value):
+                $is_blt ? (($src1_value < $src2_value) ^ ($src1_value[31] != $src2_value[31])):
+                $is_bge ? (($src1_value >= $src2_value) ^ ($src1_value[31] != $src2_value[31])):
+                $is_bltu ? ($src1_value < $src2_value):
+                $is_bgeu ? ($src1_value >= $src2_value):1'b0;
+
+$br_target_pc[31:0] = $pc +$imm;
+```
+
+
+
+
 
 
 
