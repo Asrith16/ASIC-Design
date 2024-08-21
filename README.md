@@ -491,6 +491,7 @@ TL Verilog is a contemporary extension of traditional Verilog, developed by Redw
 
 
 ## Some Basic Combinational circuits:
+### Name of clock signal is clr_asr
 ### 1. Inverter:
    The resulting block diagram and waveforms are presented as depicted:<br>
    ![Screenshot 2024-08-21 152754](https://github.com/user-attachments/assets/2867695f-706b-4047-9662-dc6c65b36a31)
@@ -584,6 +585,8 @@ We introduce `$valid_or_reset = $valid || $reset;` as a condition for triggering
 
 # Fundamentals of RISC-V CPU Micro-architecture
 This section will discuss the implementation of a basic 3-stage RISC-V Core/CPU. The three stages include: Fetch, Decode, and Execute. The diagram below illustrates the fundamental block diagram of the CPU core:<br>
+
+### Name of the clock signal is clc_asr
 
 ![Screenshot 2024-08-21 180115](https://github.com/user-attachments/assets/8d26c27f-ed72-4cbb-abbd-53ab154c5dcc) <br>
 
