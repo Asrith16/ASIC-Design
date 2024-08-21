@@ -470,7 +470,7 @@ By examining the images above, we can observe that the output is identical when 
 ---
 
 <details>
-  <summary><strong>Lab 6: </strong></summary>
+  <summary><strong>Lab 6:  </strong></summary>
 
   <details>
   <summary><strong>Day 3</strong></summary>
