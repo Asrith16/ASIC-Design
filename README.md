@@ -812,12 +812,11 @@ Upon checking the log file we get the following result:
 ![Screenshot 2024-08-21 223921](https://github.com/user-attachments/assets/bd2be7a0-7c87-4a59-961f-2035042c4038)
 
 Results:<br>
-![image](https://github.com/user-attachments/assets/8dfd0857-8f92-48be-a73d-ba792df4b34d) <br>
+![Screenshot 2024-08-21 235038](https://github.com/user-attachments/assets/1d352e7e-fd23-45f5-b451-2a1f5e9fa0c1) <br>
 
-![image](https://github.com/user-attachments/assets/7834c62d-8972-40ed-98e1-9dd138ce8e4c) <br>
+![Screenshot 2024-08-21 235131](https://github.com/user-attachments/assets/e6fe4b2f-6dc7-4b1e-94e7-ef4d3998c4a2) <br>
 
-![image](https://github.com/user-attachments/assets/5f4aced4-17f3-41cd-9d8e-13f629d3cab3) <br>
-
+![Screenshot 2024-08-21 235202](https://github.com/user-attachments/assets/3291db9d-016d-4674-90c8-6034b8ac6d3a) <br>
 
 </details>
 
