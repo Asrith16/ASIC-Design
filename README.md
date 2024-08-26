@@ -1179,3 +1179,102 @@ Reset:
 </details>
 
 ---
+
+<details>
+  
+  <summary><strong>Lab 6: Comparing GTK wave and makerchip output<strong></summary>
+
+# Evaluating RISC-V Pre-Synthesis Simulation Outputs with Iverilog, GTKwave, and Makerchip
+The RISC-V processor was initially designed in TL-Verilog using the Makerchip IDE. For FPGA implementation, it was converted to Verilog through the Sandpiper-SaaS compiler. Pre-synthesis simulations were subsequently conducted using the GTKWave simulator.<br>
+
+### Step 1:
+Execute these commands to set up a development environment for working with simulation and synthesis tools, specifically for tasks involving Verilog and RISC-V.
+```
+$ sudo apt install make python python3 python3-pip git iverilog gtkwave
+
+$ cd ~
+
+$ sudo apt-get install python3-venv
+
+$ python3 -m venv .venv
+
+$ source ~/.venv/bin/activate
+
+$ pip3 install pyyaml click sandpiper-saas
+```
+
+
+
+
+### Step 2:
+To install the required packages, run these commands within a virtual environment:
+```
+$ sudo apt install make python python3 python3-pip git iverilog gtkwave docker.io
+
+$ sudo chmod 666 /var/run/docker.sock
+
+$ cd ~
+
+$ pip3 install pyyaml click sandpiper-saas
+```
+
+
+
+### step 3:
+Next, clone the repository into the home directory and create a `pre_synth_sim` directory to store the output.
+```
+$ cd ~
+
+$ git clone https://github.com/manili/VSDBabySoC.git
+
+$ cd /home/vsduser/VSDBabySoC
+
+$ make pre_synth_sim
+```
+
+
+### Step 4:
+Replace the `rvmyth.tlv` file in the `VSDBabySoC/src/module` folder with your RISC-V design from the Makerchip `.tlv` file that you want to convert to Verilog. Also, update the testbench to match your Makerchip code.<br>
+
+To translate the `.tlv` definition of RISC-V into a `.v` Verilog file, use the following code:
+```
+$ sandpiper-saas -i ./src/module/rvmyth.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/
+```
+
+### Step 5:
+Now to compile and simulate RISC-V design run the following code
+```
+$ iverilog -o output/pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module
+```
+
+### Step 6:
+The simulation result, `pre_synth_sim.vcd`, will be saved in the `output/pre_synth_sim` directory.<br>
+```
+$ cd output
+
+$ ./pre_synth_sim.out
+```
+
+### Step 7:
+To open the `.vcd` simulation file using the GTKWave simulation tool, use the following command:
+```
+$ gtkwave pre_synth_sim.vcd
+```
+
+### Pre-synthesis Simulation results:
+- **clc_asr**: Clock input for the RISC-V core.
+- **reset**: This is the input reset signal to the RISC-V core.
+- **OUT[9:0]**: This represents the 10-bit output `[9:0]` port of the RISC-V core. It originates from RISC-V register #14.
+
+### GTKWave Simulation waveforms:
+
+
+
+
+
+
+
+
+
+  
+</details>
