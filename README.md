@@ -1220,7 +1220,7 @@ pip3 install pyyaml click sandpiper-saas
 
 
 
-### step 3:
+### Step 3:
 Next, clone the repository into the home directory and create a `pre_synth_sim` directory to store the output.
 ```
 cd ~
@@ -1268,13 +1268,14 @@ $ gtkwave pre_synth_sim.vcd
 
 ### GTKWave Simulation waveforms:
 #### Reset:
+
 ![Screenshot 2024-08-26 185036](https://github.com/user-attachments/assets/aa605e54-a595-4157-aaa7-4d1cc7bc8cb5)
 
 #### Clock:
 
  ![Screenshot 2024-08-26 185025](https://github.com/user-attachments/assets/f198bf08-1161-4dac-af41-3ac6e98aeea4)
 
-#### Out[]:
+#### Out[9:0]:
 
 ![Screenshot 2024-08-26 185047](https://github.com/user-attachments/assets/fdcb1212-b967-45f7-8149-48e279bf3370)
 
@@ -1291,6 +1292,5 @@ $ gtkwave pre_synth_sim.vcd
 
 ![Screenshot 2024-08-22 004456](https://github.com/user-attachments/assets/a020679d-8a50-49f0-8721-470693ab9c91)
 
-
-
 </details>
+---
