@@ -1202,6 +1202,7 @@ source ~/.venv/bin/activate
 
 pip3 install pyyaml click sandpiper-saas
 ```
+![Screenshot 2024-08-26 202210](https://github.com/user-attachments/assets/c5d756aa-d923-4523-9b6a-7154029d3a09)
 
 
 
@@ -1217,6 +1218,7 @@ cd ~
 
 pip3 install pyyaml click sandpiper-saas
 ```
+![Screenshot 2024-08-26 202242](https://github.com/user-attachments/assets/d27fb5f0-48a5-4a34-8074-9e2f7f59792d)
 
 
 
@@ -1260,6 +1262,7 @@ To open the `.vcd` simulation file using the GTKWave simulation tool, use the fo
 ```
 $ gtkwave pre_synth_sim.vcd
 ```
+![Screenshot 2024-08-26 202325](https://github.com/user-attachments/assets/ca90e2c3-2382-424c-a362-ae5ed6cc67d3)
 
 ### Pre-synthesis Simulation results:
 - **clc_asr**: Clock input for the RISC-V core.
@@ -1293,4 +1296,5 @@ $ gtkwave pre_synth_sim.vcd
 ![Screenshot 2024-08-22 004456](https://github.com/user-attachments/assets/a020679d-8a50-49f0-8721-470693ab9c91)
 
 </details>
+
 ---
