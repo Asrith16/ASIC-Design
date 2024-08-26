@@ -1182,7 +1182,7 @@ Reset:
 
 <details>
   
-  <summary><strong>Lab 6: Comparing GTK wave and makerchip output<strong></summary>
+  <summary><strong>Lab 7: Comparing GTK wave and makerchip output<strong></summary>
 
 # Evaluating RISC-V Pre-Synthesis Simulation Outputs with Iverilog, GTKwave, and Makerchip
 The RISC-V processor was initially designed in TL-Verilog using the Makerchip IDE. For FPGA implementation, it was converted to Verilog through the Sandpiper-SaaS compiler. Pre-synthesis simulations were subsequently conducted using the GTKWave simulator.<br>
@@ -1264,10 +1264,33 @@ $ gtkwave pre_synth_sim.vcd
 ### Pre-synthesis Simulation results:
 - **clc_asr**: Clock input for the RISC-V core.
 - **reset**: This is the input reset signal to the RISC-V core.
-- **OUT[9:0]**: This represents the 10-bit output `[9:0]` port of the RISC-V core. It originates from RISC-V register #14.
+- **OUT[9:0]**: This represents the 10-bit output [9:0] port of the RISC-V core. It originates from RISC-V register #14.
 
 ### GTKWave Simulation waveforms:
+#### Reset:
+![Screenshot 2024-08-26 185036](https://github.com/user-attachments/assets/aa605e54-a595-4157-aaa7-4d1cc7bc8cb5)
+
+#### Clock:
+
+ ![Screenshot 2024-08-26 185025](https://github.com/user-attachments/assets/f198bf08-1161-4dac-af41-3ac6e98aeea4)
+
+#### Out[]:
+
+![Screenshot 2024-08-26 185047](https://github.com/user-attachments/assets/fdcb1212-b967-45f7-8149-48e279bf3370)
+
+### Makerchip Simulation waveforms:
+#### Reset:
+
+![Screenshot 2024-08-22 004433](https://github.com/user-attachments/assets/fbedc275-7a1a-4ed2-871e-8da5182236a7)
+
+#### Clock:
+
+![Screenshot 2024-08-22 004337](https://github.com/user-attachments/assets/1c16c26d-24d3-4c3b-a909-8642e063b52a)
+
+#### Out[9:0]:
+
+![Screenshot 2024-08-22 004456](https://github.com/user-attachments/assets/a020679d-8a50-49f0-8721-470693ab9c91)
 
 
- 
+
 </details>
