@@ -1300,7 +1300,8 @@ $ gtkwave pre_synth_sim.vcd
 ---
 
 <details>
-  <sumarry><strong>Lab 8:</strong></sumarry>
+  
+  <summary><strong>Lab 8:</strong></summary>
 
 # Integrating and Validating a Custom RISC-V Processor (rvmyth) within the BabySoC Platform
 The goal is to integrate the custom RISC-V processor, known as rvmyth, into the BabySoC platform and validate its functionality using advanced digital design and simulation tools. This process involves generating DAC (Digital-to-Analog Converter) and PLL (Phase-Locked Loop) waveforms for the RISC-V processor to ensure proper performance and accuracy.<br>
