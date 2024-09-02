@@ -1304,12 +1304,15 @@ $ gtkwave pre_synth_sim.vcd
   <summary><strong>Lab 8:</strong></summary>
 
 # Integrating and Validating a Custom RISC-V Processor (rvmyth) within the BabySoC Platform
+
 The goal is to integrate the custom RISC-V processor, known as rvmyth, into the BabySoC platform and validate its functionality using advanced digital design and simulation tools. This process involves generating DAC (Digital-to-Analog Converter) and PLL (Phase-Locked Loop) waveforms for the RISC-V processor to ensure proper performance and accuracy.<br>
 
 ### Phase-Locked Loop(PLL)
+
 A Phase-Locked Loop (PLL) is an electronic control system designed to generate an output signal that maintains phase alignment with an input signal. Commonly employed in telecommunications, radio, and computing, PLLs are crucial for tasks such as signal synchronization, frequency stabilization, and clock generation in digital circuits.<br>
 
 ### Acquire and Set Up Project Files
+
 You can download all the files for BabySoC using the following command.
 ```it clone https://github.com/manili/VSDBabySoC.git```
 
