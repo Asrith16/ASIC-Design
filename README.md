@@ -1298,3 +1298,49 @@ $ gtkwave pre_synth_sim.vcd
 </details>
 
 ---
+
+<details>
+  <sumarry><strong>Lab 8:</strong></sumarry>
+
+# Integrating and Validating a Custom RISC-V Processor (rvmyth) within the BabySoC Platform
+The goal is to integrate the custom RISC-V processor, known as rvmyth, into the BabySoC platform and validate its functionality using advanced digital design and simulation tools. This process involves generating DAC (Digital-to-Analog Converter) and PLL (Phase-Locked Loop) waveforms for the RISC-V processor to ensure proper performance and accuracy.<br>
+
+### Phase-Locked Loop(PLL)
+A Phase-Locked Loop (PLL) is an electronic control system designed to generate an output signal that maintains phase alignment with an input signal. Commonly employed in telecommunications, radio, and computing, PLLs are crucial for tasks such as signal synchronization, frequency stabilization, and clock generation in digital circuits.<br>
+
+### Acquire and Set Up Project Files
+You can download all the files for BabySoC using the following command.
+```it clone https://github.com/manili/VSDBabySoC.git```
+
+![image](https://github.com/user-attachments/assets/f6db64f9-0b0b-4a37-a277-505600d4c550)
+
+### Verilog Code:
+![image](https://github.com/user-attachments/assets/6b3ef4d5-6a5d-4ed3-bcea-585c28fb63c3)
+
+
+### Changing top level verlog code:
+### Simulation procedure:
+You can execute a functional simulation by using the following command:
+```
+cd BabySoC_Simulation
+iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+./pre_synth_sim.out
+gtkwave pre_synth_sim.vcd
+```
+### Final Results:
+#### Waveforms:
+Final Result waveform (with PLL output signal, rvmyth 10-bit output signal, DAC output analog waveform):<br>
+
+![Screenshot from 2024-09-02 23-46-35](https://github.com/user-attachments/assets/b1a5eb2e-ef4b-46d6-aff4-40915ece677a)
+
+Reset Waveform:
+![Screenshot from 2024-09-02 23-46-24](https://github.com/user-attachments/assets/9af14ba2-c427-4318-a43d-f59700740dc2)
+
+Clock waveform as clk_asr along with PLL clk:
+![Screenshot from 2024-09-02 23-45-45](https://github.com/user-attachments/assets/a527488e-86f7-454f-81da-7e9dd399d619)
+
+
+  
+</details>
+
+---
