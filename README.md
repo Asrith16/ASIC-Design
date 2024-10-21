@@ -1855,3 +1855,4 @@ write_verilog -noattr mult_8_net.v
 
 </details>
 
+</details>
