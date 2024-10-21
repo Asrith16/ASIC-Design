@@ -1350,9 +1350,7 @@ Clock waveform as clk_asr along with PLL clk:
 ---
 
 <details>
-	
-  <summary><strong>Lab 9:RTL Design using Verilog with Sky130 Technology</strong></summary>
-  
+	<summary><strong>Lab 9:RTL Design using Verilog with Sky130 Technology</strong></summary>
   <details>
 	  <summary><strong>Day 1:Introduction to Verilog RTL design and Synthesis.</strong></summary>
 
@@ -2527,7 +2525,6 @@ gtkwave tb_counter_opt.vcd
 </details>
 
 <details>
-	
 	<summary><strong>Day 4:</strong> GLS, blocking vs non-blocking and Synthesis-Simulation mismatch.</strong></summary>
  
 ## Introduction to GLS and Synthesis-Simulation mismatch
