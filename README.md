@@ -1496,7 +1496,93 @@ write_verilog -noattr good_mux_netlist.v
 
 </details>
 
+<details>
+  
+  <summary><strong>Day 2:</strong>Timing libs, hierarchical vs flat synthesis and efficient flop coding styles.</strong></summary>
+## Introduction to timing labs
 
+Run the following commands to view the contents inside the .lib file:
+
+```
+cd VLSI/sky130RTLDesignAndSynthesisWorkshop/lib/
+
+vim sky130_fd_sc_hd__tt_025C_1v80.lib
+
+```
+![image](https://github.com/user-attachments/assets/ee7228b4-511e-4c2f-b593-7e47401c0856)
+#  Cell library
+ A standard cell library is a collection of characterized logic gates that can be used to implement digital circuits. The Liberty (.lib) files contain PVT parameters (Process, Voltage, Temperature) that can significantly impact circuit performance. Variations in manufacturing, changes in voltage, and fluctuations in temperature all play a role in affecting how the circuit functions.
+![image](https://github.com/user-attachments/assets/5f97291a-365c-481d-b403-27f8cfc836b1)
+
+We can also find various flavours of AND gate
+![image](https://github.com/user-attachments/assets/94bedc7f-a3ee-4dfb-9f0b-06da6385831a)
+![image](https://github.com/user-attachments/assets/025b64b5-7541-4a0e-b052-6cdf864c7020)
+![image](https://github.com/user-attachments/assets/27c4fe75-0ded-450f-99b2-1b33da878033)
+We can observe that:
+* and2_0 -- takes the least area, more delay and low power.
+* and2_1 -- takes more area, less delay and high power.
+* and2_2 -- takes the largest area, larger delay and highest power.
+
+## Hierarchial synthesis vs Flat synthesis 
+
+Hierarchical synthesis involves breaking down a complex design into various sub-modules, each of which is synthesized separately to produce gate-level netlists before being integrated. This approach enhances organization, allows for module reuse, and enables incremental design changes without impacting the entire system. In contrast, flat synthesis treats the entire design as a single unit during the synthesis process, resulting in a single netlist regardless of any hierarchical relationships. While flat synthesis can optimize certain designs, it becomes difficult to maintain, analyze, and modify the design due to its absence of structural modularity.
+
+### Hierarchial synthesis  
+
+Consider the verilog file ```multiple_modules.v``` which is given in the verilog_files directory
+```
+module sub_module2 (input a, input b, output y);
+    assign y = a | b;
+endmodule
+
+module sub_module1 (input a, input b, output y);
+    assign y = a&b;
+endmodule
+
+
+module multiple_modules (input a, input b, input c , output y);
+    wire net1;
+    sub_module1 u1(.a(a),.b(b),.y(net1));  //net1 = a&b
+    sub_module2 u2(.a(net1),.b(c),.y(y));  //y = net1|c ,ie y = a&b + c;
+endmodule
+```
+To perform hierarchical synthesis on the ```multiple_modules.v ``` file use the following commands:
+```
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog multiple_modules.v
+
+synth -top multiple_modules
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show multiple_modules
+
+write_verilog -noattr multiple_modules_hier.v
+
+!vim multiple_modules_hier.v
+
+```
+When you do synth -top 'topmodulename' in yosys, it does an hierarchical synthesis. ie the different hierarchies between modules are preserved.
+![image](https://github.com/user-attachments/assets/bbc25345-5b46-4aff-96c0-7782b249a9b8)
+
+### Statistics of multiple modules:
+![image](https://github.com/user-attachments/assets/f7c794af-8e0c-40a8-8532-12a1f7396a1c)
+
+### Realization of logic:
+![image](https://github.com/user-attachments/assets/ad4367db-e277-41fb-bf6f-015ed462c4eb)
+### Map to the standard library:
+![image](https://github.com/user-attachments/assets/1abd7ffe-5620-402c-931b-5c1488b01f9e)
+### Netlist file:
+![image](https://github.com/user-attachments/assets/42c970b2-c97e-4188-9303-5aae4048b008)
+
+
+
+
+  
+</details>
 
 
 
