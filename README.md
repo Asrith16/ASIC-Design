@@ -1352,10 +1352,9 @@ Clock waveform as clk_asr along with PLL clk:
 <details>
 	
   <summary><strong>Lab 9:RTL Design using Verilog with Sky130 Technology</strong></summary>
-
-<details>
   
-  <summary><strong>Day 1:Introduction to Verilog RTL design and Synthesis.</strong></summary>
+  <details>
+	  <summary><strong>Day 1:Introduction to Verilog RTL design and Synthesis.</strong></summary>
 
 ## Introduction to iverilog
 #### RTL Design and Simulation with Icarus Verilog
@@ -1492,7 +1491,6 @@ show
 write_verilog -noattr good_mux_netlist.v
 ```
 ![image](https://github.com/user-attachments/assets/1a67427e-169b-4fba-ab14-27bfd22e5842)
-
 
 </details>
 
