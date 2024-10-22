@@ -1350,7 +1350,8 @@ Clock waveform as clk_asr along with PLL clk:
 ---
 
 <details>
-	<summary><strong> Lab 9:RTL Design using Verilog with Sky130 Technology </strong></summary>
+  
+  <summary><strong>Lab 9:</strong></summary>
 	
   <details>
 	  <summary><strong>Day 1:Introduction to Verilog RTL design and Synthesis.</strong></summary>
