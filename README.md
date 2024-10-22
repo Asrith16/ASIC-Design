@@ -1349,7 +1349,7 @@ Clock waveform as clk_asr along with PLL clk:
 
 ---
 
-<details>
+
   
   <summary><strong>Lab 9:</strong></summary>
 	
@@ -2723,6 +2723,5 @@ In this case there is a synthesis and simulation mismatch. While performing synt
 
 </details>
 
-</details>
 
 ---
