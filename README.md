@@ -1350,7 +1350,8 @@ Clock waveform as clk_asr along with PLL clk:
 ---
 
 <details>
-	<summary><strong>Lab 9:RTL Design using Verilog with Sky130 Technology</strong></summary>
+	<summary><strong> Lab 9:RTL Design using Verilog with Sky130 Technology </strong></summary>
+	
   <details>
 	  <summary><strong>Day 1:Introduction to Verilog RTL design and Synthesis.</strong></summary>
 
@@ -1493,8 +1494,8 @@ write_verilog -noattr good_mux_netlist.v
 </details>
 
 <details>
-  
   <summary><strong>Day 2:</strong>Timing libs, hierarchical vs flat synthesis and efficient flop coding styles.</strong></summary>
+
 ## Introduction to timing labs
 
 Run the following commands to view the contents inside the .lib file:
@@ -1836,7 +1837,6 @@ write_verilog -noattr mult_8_net.v
 </details>
 
 <details>
-
  <summary><strong>Day 3:Introduction to Combinational and sequential optimizations.</strong></summary>
 
 ##  Introduction to Combinational Logic Optimization and sequential Optimization
