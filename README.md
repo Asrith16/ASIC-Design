@@ -2504,8 +2504,10 @@ show
 write_verilog -noattr counter_opt_net.v
 
 ```
-![image](https://github.com/user-attachments/assets/9f695ebc-ce33-4cfb-856f-8fa5ac0b1ddb) <br>
-![image](https://github.com/user-attachments/assets/3579f806-62b0-4270-aaa8-8bb3bd974e73) <br>
+![image](https://github.com/user-attachments/assets/78cd2bc5-1cea-4917-8c30-b016ad19a253) <br>
+
+![image](https://github.com/user-attachments/assets/89b0aa0f-b511-4790-84ac-f0fe5dfb1512) <br>
+
 
 
 
