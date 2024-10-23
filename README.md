@@ -2725,3 +2725,66 @@ In this case there is a synthesis and simulation mismatch. While performing synt
 
 
 ---
+
+
+<details>
+	<summary><strong>Lab 10: </strong></summary>
+
+ ## Performing RISC-V synthesis and comparing the results with functional (RTL) simulation outputs.
+ Copy the src folder from your BabySoC folder to your sky130RTLDesignAndSynthesisWorkshop folder in your VLSI folder from previous lab.<br>
+ ```
+cd /home/rishi/VLSI/sky130RTLDesignAndSynthesisWorkshop/src/module
+```
+### Synthesis:
+```
+yosys       
+
+read_liberty -lib /home/rishi/VLSI/sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog clk_gate.v
+
+read_verilog rvmyth.v
+
+synth -top rvmyth
+
+abc -liberty /home/rishi/VLSI/sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+write_verilog -noattr rvmyth_net.v
+
+!gvim rvmyth_net.v
+
+exit
+```
+![Screenshot from 2024-10-24 01-02-55](https://github.com/user-attachments/assets/8c010b16-c588-4634-ad5c-8f7dc24abf5f) <br>
+![Screenshot from 2024-10-24 01-03-29](https://github.com/user-attachments/assets/6293ef4e-7cfd-4500-af4a-4e562b457434) <br>
+![Screenshot from 2024-10-24 01-04-36](https://github.com/user-attachments/assets/9a27c85d-496a-4926-8ecb-78c2a81d3ff1) <br>
+
+Now to observe the output waveform of synthesised RISC-V:<br>
+```
+iverilog ../../my_lib/verilog_model/primitives.v ../../my_lib/verilog_model/sky130_fd_sc_hd.v rvmyth.v testbench.v vsdbabysoc.v avsddac.v avsdpll.v clk_gate.v
+
+./a.out
+
+gtkwave dump.vcd
+```
+![Screenshot from 2024-10-24 01-09-34](https://github.com/user-attachments/assets/20f77a54-6e08-45f8-8681-73594d8c4848) <br>
+![Screenshot from 2024-10-24 01-09-47](https://github.com/user-attachments/assets/5f6dbb56-00a0-46d1-be19-7268037afcb1) <br>
+
+## RTL Simulations:
+```
+cd BabySoC_Simulation
+
+iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+
+./pre_synth_sim.out
+
+gtkwave pre_synth_sim.vcd
+```
+![Screenshot from 2024-10-24 01-14-33](https://github.com/user-attachments/assets/377ace79-5c28-42a5-9d29-de01da689e9f) <br>
+![Screenshot from 2024-10-24 01-14-40](https://github.com/user-attachments/assets/f285df06-cce9-4214-a771-f4b011b6d869) <br>
+
+
+
+ 
+</details>
+
