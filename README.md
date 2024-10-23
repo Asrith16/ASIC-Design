@@ -2772,7 +2772,6 @@ gtkwave dump.vcd
 ### Realization:
 ![image](https://github.com/user-attachments/assets/5ee32430-8146-4ae0-811b-d73b5868bdcf) <br>
 ![image](https://github.com/user-attachments/assets/71700130-4ce8-4374-8882-73fffeae77c3) <br>
-![image](https://github.com/user-attachments/assets/000dc372-789b-4b51-b79f-85f8744ddf1a) <br>
 
 ## RTL Simulations:
 ```
