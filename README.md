@@ -2801,7 +2801,6 @@ gtkwave pre_synth_sim.vcd
 
 Static Timing Analysis (STA) is a crucial verification process in digital circuit design, used to ensure that circuits adhere to timing requirements without running dynamic simulations. By evaluating the paths data travels from inputs to outputs, STA analyzes delays introduced by gate propagation and interconnects to validate that all timing constraints are met. It focuses on detecting setup and hold time violations, which ensures data stability around clock edges. STA also considers clock attributes, such as frequency, skew, and jitter, and operates under worst-case delay scenarios to ensure reliable performance under diverse conditions. Automated tools, like Synopsys PrimeTime and Cadence Tempus, streamline STA by identifying timing issues early, enabling circuits to achieve the desired operating speeds with consistent reliability.
 
-The importance of STA in digital design lies in its ability to ensure that data signals transition within specified timing limits, resulting in valid outputs and robust functionality of sequential components like flip-flops. STA assists in optimizing circuit performance by pinpointing critical paths that limit maximum operating frequencies, allowing designers to address timing issues early and reduce the need for costly redesigns. Additionally, STA enables the assessment of power consumption related to clock frequency adjustments, helping designers strike a balance between performance and efficiency. Automated STA tools manage complex designs, accounting for variations in process, temperature, and voltage, which ensures stable operation across diverse conditions.
 
 **Register-to-Register (Reg-to-Reg) Paths**
 
@@ -2811,9 +2810,9 @@ A reg-to-reg path, which links two sequential elements like flip-flops in a circ
 
 The clk-to-reg path represents the timing relationship between a clock signal and a register, essential for coordinating register operation in line with clock edges. This path measures the delay for a clock pulse to reach a register from its clock source, accounting for buffer and routing delays along the way. During setup timing checks, the clk-to-reg path helps determine when data must arrive at a register in relation to the clock cycle. Clock delays directly impact data capture timing, so STA thoroughly examines setup and hold timing to address variations in clock jitter and other inconsistencies. For designs with multiple clock domains, additional synchronization requirements ensure that data transfers accurately and reliably across clock boundaries.
 
-**Performing STA on a Synthesized RISC-V Core with a 10.65 ns Timing Constraint**
+**Performing STA on a Synthesized RISC-V Core with a 10.75 ns Timing Constraint**
 
-To confirm that a synthesized RISC-V core module meets its specified timing requirements, timing reports for setup and hold times will be generated. These reports help verify that data signals propagate as intended throughout the core and are stable at the appropriate times. The following commands can be executed to generate these reports and validate the timing integrity of the RISC-V core under the target timing period of 10.65 ns.
+To confirm that a synthesized RISC-V core module meets its specified timing requirements, timing reports for setup and hold times will be generated. These reports help verify that data signals propagate as intended throughout the core and are stable at the appropriate times. The following commands can be executed to generate these reports and validate the timing integrity of the RISC-V core under the target timing period of 10.75 ns.
 
 ```
 set PERIOD 10.75
@@ -2856,6 +2855,7 @@ read_sdc ./sdc/vsdbabysoc_synthesis.sdc
 
 report_checks -path_delay min_max -format full_clock_expanded -digits 4
 ```
+![image](https://github.com/user-attachments/assets/9fa408b5-57cc-484a-8f90-a31ad2322b1b)
 
 
 ### Setup Time:
