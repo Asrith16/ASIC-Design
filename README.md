@@ -2793,4 +2793,80 @@ gtkwave pre_synth_sim.vcd
 
 ---
 
+<details>
 
+ <summary><strong> Lab 11:</strong></summary>
+
+**Static Timing Analysis (STA)**
+
+Static Timing Analysis (STA) is a crucial verification process in digital circuit design, used to ensure that circuits adhere to timing requirements without running dynamic simulations. By evaluating the paths data travels from inputs to outputs, STA analyzes delays introduced by gate propagation and interconnects to validate that all timing constraints are met. It focuses on detecting setup and hold time violations, which ensures data stability around clock edges. STA also considers clock attributes, such as frequency, skew, and jitter, and operates under worst-case delay scenarios to ensure reliable performance under diverse conditions. Automated tools, like Synopsys PrimeTime and Cadence Tempus, streamline STA by identifying timing issues early, enabling circuits to achieve the desired operating speeds with consistent reliability.
+
+The importance of STA in digital design lies in its ability to ensure that data signals transition within specified timing limits, resulting in valid outputs and robust functionality of sequential components like flip-flops. STA assists in optimizing circuit performance by pinpointing critical paths that limit maximum operating frequencies, allowing designers to address timing issues early and reduce the need for costly redesigns. Additionally, STA enables the assessment of power consumption related to clock frequency adjustments, helping designers strike a balance between performance and efficiency. Automated STA tools manage complex designs, accounting for variations in process, temperature, and voltage, which ensures stable operation across diverse conditions.
+
+**Register-to-Register (Reg-to-Reg) Paths**
+
+A reg-to-reg path, which links two sequential elements like flip-flops in a circuit, is essential in STA to verify the data flow between registers through intermediate combinational logic. This path is particularly significant in pipelined or sequential architectures, as it ensures synchronized and correct data transfer. STA evaluates the timing compliance for setup and hold requirements on these paths, confirming stable data transitions at the register level. Timing analysis examines the delay through combinational logic between registers, and critical reg-to-reg paths often dictate the highest achievable operating frequency of the design. When analyzing registers across different clock domains, STA also considers synchronization requirements to mitigate potential metastability issues.
+
+**Clock-to-Register (Clk-to-Reg) Paths**
+
+The clk-to-reg path represents the timing relationship between a clock signal and a register, essential for coordinating register operation in line with clock edges. This path measures the delay for a clock pulse to reach a register from its clock source, accounting for buffer and routing delays along the way. During setup timing checks, the clk-to-reg path helps determine when data must arrive at a register in relation to the clock cycle. Clock delays directly impact data capture timing, so STA thoroughly examines setup and hold timing to address variations in clock jitter and other inconsistencies. For designs with multiple clock domains, additional synchronization requirements ensure that data transfers accurately and reliably across clock boundaries.
+
+**Performing STA on a Synthesized RISC-V Core with a 10.65 ns Timing Constraint**
+
+To confirm that a synthesized RISC-V core module meets its specified timing requirements, timing reports for setup and hold times will be generated. These reports help verify that data signals propagate as intended throughout the core and are stable at the appropriate times. The following commands can be executed to generate these reports and validate the timing integrity of the RISC-V core under the target timing period of 10.65 ns.
+
+```
+set PERIOD 10.75
+
+set_units -time ns
+
+create_clock [get_pins {pll/CLK}] -name clk -period $PERIOD
+set_clock_uncertainty -setup  [expr $PERIOD * 0.05] [get_clocks clk]
+set_clock_transition [expr $PERIOD * 0.05] [get_clocks clk]
+set_clock_uncertainty -hold [expr $PERIOD * 0.08] [get_clocks clk]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_CP]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_VCO]
+set_input_transition [expr $PERIOD * 0.08] [get_ports REF]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VCO_IN]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
+```
+
+```
+cd VSDBabySoc/src
+
+sta
+
+read_liberty -min ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_liberty -min ./lib/avsdpll.lib
+
+read_liberty -min ./lib/avsddac.lib
+
+read_liberty -max ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_liberty -max ./lib/avsdpll.lib
+
+read_liberty -max ./lib/avsddac.lib
+
+read_verilog ../output/synth/vsdbabysoc.synth.v
+
+link_design vsdbabysoc
+
+read_sdc ./sdc/vsdbabysoc_synthesis.sdc
+
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+
+
+### Setup Time:
+![WhatsApp Image 2024-10-28 at 23 59 15 (1)](https://github.com/user-attachments/assets/1872c22c-c960-47a7-b4ed-481d8836623a) <br>
+
+### Hold Time:
+![WhatsApp Image 2024-10-28 at 23 59 15](https://github.com/user-attachments/assets/c6e6dba3-f149-49da-959e-c1e04457c98e)
+
+
+
+
+</details>
+
+---
