@@ -2930,6 +2930,7 @@ source sta_across_pvt.tcl
 
 <details>
 
+file:///home/rishi/Pictures/Screenshots/Screenshot%20from%202024-11-04%2011-04-47.png
 
 
  
