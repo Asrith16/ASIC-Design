@@ -3958,11 +3958,11 @@ Now, enter the following commands for Post-CTS OpenROAD timing analysis:
 
 ```
 openroad
-read_lef /openLANE_flow/designs/picorv32a/runs/13-11_08-51/tmp/merged.lef
-read_def /openLANE_flow/designs/picorv32a/runs/13-11_08-51results/cts/picorv32a.cts.def
+read_lef /openLANE_flow/designs/picorv32a/runs/13-11_17-56/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-11_17-56/results/cts/picorv32a.cts.def
 write_db pico_cts.db
 read_db pico_cts.db
-read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_08-51/results/synthesis/picorv32a.synthesis_cts.v
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_17-56/results/synthesis/picorv32a.synthesis_cts.v
 read_liberty $::env(LIB_SYNTH_COMPLETE)
 link_design picorv32a
 read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
@@ -3983,15 +3983,15 @@ echo $::env(CTS_CLK_BUFFER_LIST)
 set ::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0]
 echo $::env(CTS_CLK_BUFFER_LIST)
 echo $::env(CURRENT_DEF)
-set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/13-11_08-51/results/placement/picorv32a.placement.def
+set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/13-11_17-56/results/placement/picorv32a.placement.def
 run_cts
 echo $::env(CTS_CLK_BUFFER_LIST)
 openroad
-read_lef /openLANE_flow/designs/picorv32a/runs/13-11_08-51/tmp/merged.lef
-read_def /openLANE_flow/designs/picorv32a/runs/13-11_08-51/results/cts/picorv32a.cts.def
+read_lef /openLANE_flow/designs/picorv32a/runs/13-11_17-56/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-11_17-56/results/cts/picorv32a.cts.def
 write_db pico_cts1.db
 read_db pico_cts.db
-read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_08-51/results/synthesis/picorv32a.synthesis_cts.v
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_17-56/results/synthesis/picorv32a.synthesis_cts.v
 read_liberty $::env(LIB_SYNTH_COMPLETE)
 link_design picorv32a
 read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
@@ -4013,17 +4013,106 @@ echo $::env(CTS_CLK_BUFFER_LIST)
 
 <details>
 	<summary><strong>Day 5 </strong></summary>
-	
+
+## Final Steps for RTL to GDS Using TritonRoute and OpenSTA
+
+Maze routing connects pins physically on a routing grid, with Lee’s algorithm being a common method. This algorithm begins at the source pin, assigning sequential labels to neighboring grid cells until the target pin is reached. It prefers L-shaped routes and only uses zigzag paths if needed. While Lee’s algorithm ensures the shortest path between two pins, it can be slow for larger designs, leading to the adoption of faster methods for more complex routing tasks.
+
+```
+
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+set ::env(SYNTH_SIZING) 1
+run_synthesis
+init_floorplan
+place_io
+tap_decap_or
+run_placement
+run_cts
+gen_pdn
+
+```
+Screenshots of power distribution network run:
+
+![Screenshot 2024-11-14 020448](https://github.com/user-attachments/assets/fc9482a4-a90d-4695-b576-768891f13234)
+![Screenshot 2024-11-14 020558](https://github.com/user-attachments/assets/91840bde-0cb5-4ba6-873d-531311c324c6)
+![Screenshot 2024-11-14 020626](https://github.com/user-attachments/assets/c8502309-f675-46bb-9e33-87fe166cfb80)
+![Screenshot 2024-11-14 020644](https://github.com/user-attachments/assets/0a28d600-deeb-419e-abd1-ec4d34a8f50b)
+![Screenshot 2024-11-14 020701](https://github.com/user-attachments/assets/20df6e14-a027-4dd3-bc78-31c585dd1266)
+
+## 2. Perfrom detailed routing using TritonRoute and explore the routed layout.
+Command to perform routing
+```
+echo $::env(CURRENT_DEF)
+echo $::env(ROUTING_STRATEGY)
+run_routing
+```
+Screenshots of routing run:
+![Screenshot 2024-11-14 023507](https://github.com/user-attachments/assets/1a3a716d-7509-49bf-aa56-edb800a9852a)
+![Screenshot 2024-11-14 023756](https://github.com/user-attachments/assets/acdc5249-0008-4885-a445-81006e96baa7)
+![Screenshot 2024-11-14 023258](https://github.com/user-attachments/assets/de23cca0-b7c4-47b1-88aa-0b32b6599c76)
+
+Screenshot of fast route guide present in openlane/designs/picorv32a/runs/13-11_18-24/tmp/routing directory :
+![Screenshot 2024-11-14 023912](https://github.com/user-attachments/assets/4b9658fc-3a4e-409e-adee-4ab0007d1e32)
+
+
+### **3. Post-Route Parasitic Extraction with SPEF Extractor**
+
+To extract parasitics after routing, the SPEF extractor analyzes the design layout and generates a Standard Parasitic Exchange Format (SPEF) file. Use the following command to perform the extraction:
+
+```bash
+cd Desktop/work/tools/SPEF_EXTRACTOR
+
+python3 main.py /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_18-24/tmp/merged.lef /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_18-24/results/routing/picorv32a.def
+```
+
+Here, the `.lef` file provides information about cell layout, and the `.def` file details the design's physical implementation.
+
+---
+
+### **4. Post-Route Timing Analysis with OpenSTA**
+
+To analyze timing post-routing with extracted parasitics, OpenSTA integrated within OpenROAD is used. Follow these steps to run the analysis:
+
+```bash
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/13-11_18-24/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-11_18-24/results/routing/picorv32a.def
+write_db pico_route.db
+read_db pico_route.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_18-24/results/synthesis/picorv32a.synthesis_preroute.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+read_spef /openLANE_flow/designs/picorv32a/runs/13-11_18-24/results/routing/picorv32a.spef
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+exit
+```
+
+- **Files Used**:
+  - `.lef`: Layout information for standard cells.
+  - `.def`: Details the post-route physical design.
+  - `.synthesis_preroute.v`: Pre-route synthesized netlist.
+  - `.sdc`: Design constraints like clock definitions.
+  - `.spef`: Extracted parasitic data from the SPEF extractor.
+  
+- **Commands Overview**:
+  - Load design files, including library, layout, and constraints.
+  - Incorporate parasitics with the `.spef` file.
+  - Generate timing reports (`report_checks`) for min/max delays with detailed fields.
+
+This flow ensures accurate timing analysis, including parasitic effects, enhancing design reliability before fabrication.
+
 </details>
-
-
-
-
-
-
-
-
-
-
  
 </details>
+
+---
