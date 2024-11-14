@@ -4046,6 +4046,9 @@ Screenshots of power distribution network run:
 ![Screenshot 2024-11-14 020626](https://github.com/user-attachments/assets/c8502309-f675-46bb-9e33-87fe166cfb80)
 ![Screenshot 2024-11-14 020644](https://github.com/user-attachments/assets/0a28d600-deeb-419e-abd1-ec4d34a8f50b)
 ![Screenshot 2024-11-14 020701](https://github.com/user-attachments/assets/20df6e14-a027-4dd3-bc78-31c585dd1266)
+![Screenshot 2024-11-14 134654](https://github.com/user-attachments/assets/f9dd7bf8-80db-46c4-8d8e-f15ce7b35396)
+![Screenshot 2024-11-14 134633](https://github.com/user-attachments/assets/058be6e9-dbc9-4d47-9b1a-869833c316bd)
+
 
 ## 2. Perfrom detailed routing using TritonRoute and explore the routed layout.
 Command to perform routing
@@ -4061,6 +4064,8 @@ Screenshots of routing run:
 
 Screenshot of fast route guide present in openlane/designs/picorv32a/runs/13-11_18-24/tmp/routing directory :
 ![Screenshot 2024-11-14 023912](https://github.com/user-attachments/assets/4b9658fc-3a4e-409e-adee-4ab0007d1e32)
+![Screenshot 2024-11-14 134834](https://github.com/user-attachments/assets/9d7e6a60-ed29-4815-81b7-6b6fb373cd37)
+![Screenshot 2024-11-14 134824](https://github.com/user-attachments/assets/ae4a8543-f97b-407d-a691-da87b5792b2e)
 
 
 ### **3. Post-Route Parasitic Extraction with SPEF Extractor**
