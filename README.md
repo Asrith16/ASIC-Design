@@ -4121,3 +4121,175 @@ This flow ensures accurate timing analysis, including parasitic effects, enhanci
 </details>
 
 ---
+
+
+<details>
+	<summary><strong> Lab 14</strong></summary>
+
+ ### Installing and setting up ORFS
+```
+git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+cd OpenROAD-flow-scripts
+sudo ./setup.sh
+```
+![Screenshot from 2024-11-26 00-04-05](https://github.com/user-attachments/assets/2bf05e40-baa5-4d81-9695-620f6dd6a5fc)
+
+Next run the following command:
+```
+./build_openroad.sh --local
+```
+![Screenshot from 2024-11-26 00-04-24](https://github.com/user-attachments/assets/7fdc7df2-7045-4265-8b85-664f61a0ff4b)
+![Screenshot from 2024-11-26 00-04-39](https://github.com/user-attachments/assets/6d6af42d-3ad4-4591-af8a-8867a1ace0ac)
+
+To verify the installation run the following commands:
+```
+source ./env.sh
+yosys -help
+openroad -help
+cd flow
+make
+```
+![Screenshot from 2024-11-26 00-04-53](https://github.com/user-attachments/assets/7a73f17b-67dd-48b8-8a79-374ff523a05a)
+![Screenshot from 2024-11-26 00-05-04](https://github.com/user-attachments/assets/b3368195-4236-4d11-bb25-78d89746005f)
+![Screenshot from 2024-11-26 00-05-31](https://github.com/user-attachments/assets/504c9fa1-9216-4062-9414-d71e21456256)
+
+next run the command:
+```
+make gui_final
+```
+![Screenshot from 2024-11-25 23-06-21](https://github.com/user-attachments/assets/23740033-da1d-4e46-ba39-f7f953ab76a9)
+
+### ORFS Directory Structure and File formats
+![Screenshot from 2024-11-26 00-06-39](https://github.com/user-attachments/assets/2d637e72-10d7-4c3f-aab0-10bd5e5e6d2c)
+
+```
+├── OpenROAD-flow-scripts             
+│   ├── docker           -> It has Docker based installation, run scripts and all saved here
+│   ├── docs             -> Documentation for OpenROAD or its flow scripts.  
+│   ├── flow             -> Files related to run RTL to GDS flow  
+|   ├── jenkins          -> It contains the regression test designed for each build update
+│   ├── tools            -> It contains all the required tools to run RTL to GDS flow
+│   ├── etc              -> Has the dependency installer script and other things
+│   ├── setup_env.sh     -> Its the source file to source all our OpenROAD rules to run the RTL to GDS flow
+```
+
+## Structure of the flow directory
+```
+├── flow           
+│   ├── design           -> It has built-in examples from RTL to GDS flow across different technology nodes
+│   ├── makefile         -> The automated flow runs through makefile setup
+│   ├── platform         -> It has different technology note libraries, lef files, GDS etc 
+|   ├── tutorials        
+│   ├── util            
+│   ├── scripts
+```
+
+Automated RTL2GDS Flow for VSDBabySoC:
+
+Initial Steps:
+
+1. Create a directory named `vsdbabysoc` under `OpenROAD-flow-scripts/flow/designs/sky130hd`.
+2. Inside `OpenROAD-flow-scripts/flow/designs/src`, create another directory named `vsdbabysoc` and add all the Verilog files there.
+3. Copy the `gds`, `include`, `lef`, and `lib` folders from your local `VSDBabySoC` folder into this new directory.
+   - The `gds` folder should contain `avsddac.gds` and `avsdpll.gds`.
+   - The `include` folder should contain `sandpiper.vh`, `sandpiper_gen.vh`, `sp_default.vh`, and `sp_verilog.vh`.
+   - The `lef` folder should contain `avsddac.lef` and `avsdpll.lef`.
+   - The `lib` folder should contain `avsddac.lib` and `avsdpll.lib`.
+4. Copy the `vsdbabysoc_synthesis.sdc` constraints file from your local `VSDBabySoC` folder into this directory.
+5. Copy the `macro.cfg` and `pin_order.cfg` files from your local `VSDBabySoC` folder into this directory.
+6. Create a `config.mk` file with the contents shown below:
+```
+export DESIGN_NICKNAME = vsdbabysoc
+export DESIGN_NAME = vsdbabysoc
+export PLATFORM    = sky130hd
+
+# export VERILOG_FILES_BLACKBOX = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/IPs/*.v
+# export VERILOG_FILES = $(sort $(wildcard $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/*.v))
+# Explicitly list the Verilog files for synthesis
+export VERILOG_FILES = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/vsdbabysoc.v \
+                       $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/rvmyth.v \
+                       $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/clk_gate.v
+
+export SDC_FILE      = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/vsdbabysoc_synthesis.sdc
+
+
+export DIE_AREA   = 0 0 1600 1600
+export CORE_AREA  = 20 20 1590 1590
+
+
+export vsdbabysoc_DIR = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)
+
+export VERILOG_INCLUDE_DIRS = $(wildcard $(vsdbabysoc_DIR)/include/)
+# export SDC_FILE      = $(wildcard $(vsdbabysoc_DIR)/sdc/*.sdc)
+export ADDITIONAL_GDS  = $(wildcard $(vsdbabysoc_DIR)/gds/*.gds.gz)
+export ADDITIONAL_LEFS  = $(wildcard $(vsdbabysoc_DIR)/lef/*.lef)
+export ADDITIONAL_LIBS = $(wildcard $(vsdbabysoc_DIR)/lib/*.lib)
+# export PDN_TCL = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/pdn.tcl
+
+# Clock Configuration (vsdbabysoc specific)
+# export CLOCK_PERIOD = 20.0
+export CLOCK_PORT = CLK
+export CLOCK_NET = $(CLOCK_PORT)
+
+# Floorplanning Configuration (vsdbabysoc specific)
+export FP_PIN_ORDER_CFG = $(wildcard $(DESIGN_DIR)/pin_order.cfg)
+export FP_SIZING = absolute
+
+export DIE_AREA   = 0 0 1600 1600
+export CORE_AREA  = 20 20 1590 1590
+
+# Placement Configuration (vsdbabysoc specific)
+export MACRO_PLACEMENT_CFG = $(wildcard $(DESIGN_DIR)/macro.cfg)
+export PLACE_PINS_ARGS = -exclude left:0-600 -exclude left:1000-1600: -exclude right:* -exclude top:* -exclude bottom:*
+# export MACRO_PLACEMENT = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/macro_placement.cfg
+
+export TNS_END_PERCENT = 100
+export REMOVE_ABC_BUFFERS = 1
+
+# Magic Tool Configuration
+export MAGIC_ZEROIZE_ORIGIN = 0
+export MAGIC_EXT_USE_GDS = 1
+
+# CTS tuning
+export CTS_BUF_DISTANCE = 600
+export SKIP_GATE_CLONING = 1
+
+export CORE_UTILIZATION=0.1  # Reduce this value to allow more whitespace for routing.
+
+```
+### Now go to terminal and run the following commands:
+```
+cd OpenROAD-flow-scripts
+source env.sh
+cd flow
+```
+
+Commands for synthesis:
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
+```
+![Screenshot from 2024-11-26 00-07-26](https://github.com/user-attachments/assets/283eb121-cab0-4e80-8316-78f7f94c3704)
+![Screenshot from 2024-11-26 00-07-36](https://github.com/user-attachments/assets/42bff074-a393-49d9-b22e-ec992d59cb19)
+
+### Synthesis Netlist:
+![Screenshot from 2024-11-26 00-07-47](https://github.com/user-attachments/assets/2e09b3f2-dc29-4d57-8bcc-85f31ab86c4b)
+
+### Synthesis log:
+![Screenshot from 2024-11-26 00-24-54](https://github.com/user-attachments/assets/9597de54-d63a-46c3-ab12-460a831f1e8b)
+
+
+### Synthesis Check:
+![Screenshot from 2024-11-26 00-26-36](https://github.com/user-attachments/assets/d3ec9de4-46e2-4aec-a510-179bb2543da7)
+
+
+### Synthesis Stats:
+![Screenshot from 2024-11-26 00-27-17](https://github.com/user-attachments/assets/14f0e28a-5082-4565-a9d4-ba14d99b9b1c)
+![Screenshot from 2024-11-26 00-27-25](https://github.com/user-attachments/assets/55fce473-4def-4263-b5cc-d1595f801dea)
+![Screenshot from 2024-11-26 00-27-38](https://github.com/user-attachments/assets/a327c446-083a-4015-94b4-1c42a815a1c0)
+
+
+
+
+
+ 
+</details>
