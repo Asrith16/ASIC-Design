@@ -4126,6 +4126,7 @@ This flow ensures accurate timing analysis, including parasitic effects, enhanci
 <details>
 	<summary><strong> Lab 14</strong></summary>
 
+
  ### Installing and setting up ORFS
 ```
 git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
@@ -4287,6 +4288,11 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
 ![Screenshot from 2024-11-26 00-27-25](https://github.com/user-attachments/assets/55fce473-4def-4263-b5cc-d1595f801dea)
 ![Screenshot from 2024-11-26 00-27-38](https://github.com/user-attachments/assets/a327c446-083a-4015-94b4-1c42a815a1c0)
 
+Commands For Floor plan:
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk floorplan
+```
+![Screenshot from 2024-11-26 01-04-29](https://github.com/user-attachments/assets/2a8294cd-8620-4205-9eea-035a120d2428)
 
 
 
