@@ -4213,11 +4213,6 @@ export VERILOG_FILES = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/vsdbabysoc.v \
 
 export SDC_FILE      = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/vsdbabysoc_synthesis.sdc
 
-
-export DIE_AREA   = 0 0 1600 1600
-export CORE_AREA  = 20 20 1590 1590
-
-
 export vsdbabysoc_DIR = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)
 
 export VERILOG_INCLUDE_DIRS = $(wildcard $(vsdbabysoc_DIR)/include/)
@@ -4234,15 +4229,14 @@ export CLOCK_NET = $(CLOCK_PORT)
 
 # Floorplanning Configuration (vsdbabysoc specific)
 export FP_PIN_ORDER_CFG = $(wildcard $(DESIGN_DIR)/pin_order.cfg)
-export FP_SIZING = absolute
+# export FP_SIZING = absolute
 
 export DIE_AREA   = 0 0 1600 1600
 export CORE_AREA  = 20 20 1590 1590
 
-# Placement Configuration (vsdbabysoc specific)
-export MACRO_PLACEMENT_CFG = $(wildcard $(DESIGN_DIR)/macro.cfg)
+# Placement Configuration (vsdbabysoc specific)export MACRO_PLACEMENT_CFG = $(wildcard $(DESIGN_DIR)/macro.cfg)
 export PLACE_PINS_ARGS = -exclude left:0-600 -exclude left:1000-1600: -exclude right:* -exclude top:* -exclude bottom:*
-# export MACRO_PLACEMENT = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/macro_placement.cfg
+#export MACRO_PLACEMENT = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/macro_placement.cfg
 
 export TNS_END_PERCENT = 100
 export REMOVE_ABC_BUFFERS = 1
@@ -4255,8 +4249,7 @@ export MAGIC_EXT_USE_GDS = 1
 export CTS_BUF_DISTANCE = 600
 export SKIP_GATE_CLONING = 1
 
-export CORE_UTILIZATION=0.1  # Reduce this value to allow more whitespace for routing.
-
+# export CORE_UTILIZATION=0.1  # Reduce this value to allow more whitespace for routing.
 ```
 ### Now go to terminal and run the following commands:
 ```
