@@ -4334,6 +4334,8 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
 ![Screenshot from 2024-11-26 11-44-30](https://github.com/user-attachments/assets/41b4fcf0-1cfc-4995-9c32-95cdacad5e84)
 
 ### Heatmap:
+![Screenshot from 2024-11-26 11-46-43](https://github.com/user-attachments/assets/959234ac-e630-4387-9e09-49b0590cbf15)
+![Screenshot from 2024-11-26 11-47-55](https://github.com/user-attachments/assets/a2f7fee1-09d1-4f7f-8055-03778b69a25c)
 
 
 ### Final CTS Report:
@@ -4871,12 +4873,7 @@ Total                  1.46e-02   9.77e-03   5.06e-08   2.43e-02 100.0%
 ```
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk route
 ```
-
-
-
-
-
-
+![Screenshot from 2024-11-26 11-50-12](https://github.com/user-attachments/assets/4846e545-2669-48bd-b11c-86d34da7e013)
 
  
 </details>
